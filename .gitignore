@@ -1,0 +1,4 @@
+#Crypt ignore
+
+#OS Specific
+.DS_Store
