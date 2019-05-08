@@ -1,14 +1,6 @@
-var game = new Phaser.Game(800, 600, Phaser.AUTO, '', { preload: preload, create: create, update: update });
+var game = new Phaser.Game(800, 600, Phaser.AUTO, '');
 
-function preload() {
-	// preload assets
-}
+//game.state.add("Main", MainMenu);
+game.state.add("play", Play);
 
-function create() {
-	// place your assets
-}
-
-function update() {
-	// run game loop
-}
-
+game.state.start("play");
