@@ -6,7 +6,7 @@ var Play = function(game)
 
 Play.prototype = {
 
-	
+
 
 	create: function()
 	{
@@ -26,5 +26,10 @@ Play.prototype = {
 		game.physics.arcade.collide(player, tempFloor);
 
 
+	},
+	render: function()
+	{
+		game.debug.body(player);	
+		game.debug.body(player.meleeRect);
 	}
 }
