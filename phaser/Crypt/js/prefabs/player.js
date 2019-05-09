@@ -152,7 +152,7 @@ Player.prototype.shooting = function(state)
 
 Player.prototype.jump = function()
 {
-	this.isGrounded = this.body.touching.down;
+	this.isGrounded = this.body.blocked.down;
 	//console.log(this.isGrounded);
 	if(this.isGrounded) {
 		this.jumps = this.jumpAmount;
