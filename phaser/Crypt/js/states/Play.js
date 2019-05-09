@@ -5,12 +5,7 @@ var Play = function(game)
 
 Play.prototype = {
 
-	preload: function()
-	{
-		console.log('preload');
-		game.load.atlas('character', 'assets/img/atlas/character.png', 'assets/img/atlas/character.json');
-		game.load.image('bullet', 'assets/img/bullet.png');
-	},
+	
 
 	create: function()
 	{
