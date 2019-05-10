@@ -1,4 +1,5 @@
 var Corpse = function(game, x, y ){
+	Phaser.Sprite.call(this, game, x, y, 'corpse');
 
 }
 

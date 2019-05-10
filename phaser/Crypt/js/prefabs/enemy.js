@@ -6,6 +6,10 @@ var Enemy = function(game, x, y, key)
 	//Arcade
 	game.physics.arcade.enableBody(this);
 	this.body.gravity.y = 900;
+	this.body.collideWorldBounds = true;
+	this.enemySpeed = 300;
+	this.maxHealth = 100;
+	this.setHealth(100);	
 	
 
 
@@ -14,3 +18,9 @@ var Enemy = function(game, x, y, key)
 
 Enemy.prototype = Object.create(Phaser.Sprite.prototype);
 Enemy.prototype.constructor = Enemy;
+
+Enemy.prototype.update = function()
+{
+
+}
+

@@ -40,11 +40,18 @@ var Player = function(game, x, y, key)
 	*what we can do is have the attack function place the sprite for a split second.
 	*
 	*/
+	this.canAttack = true;
 	this.meleeRect = game.add.sprite(0,0, null);
 	//this.addChild(this.meleeRect);
 	game.physics.arcade.enableBody(this.meleeRect);
 	//SetSize(width, height, <offsetX>, <offsetY>)
 	this.meleeRect.body.setSize(50,10, 0, -5);
+	this.meleeRect.kill();
+	this.meleeAttackRate = 500;
+	this.meleeTime = game.time.create(false);
+	this.meleeTime.loop(this.meleeAttackRate, this.meleeAttackFlag, this);
+	this.meleeTime.start();
+
 
 	//Movement Keys
 	this.moveLeft = game.input.keyboard.addKey(Phaser.Keyboard.D);
@@ -70,6 +77,9 @@ Player.prototype.update = function()
 	this.movement();
 	this.jump();
 	this.shooting(this.weaponState);
+	game.physics.arcade.overlap(this.gun.bullets, _enemies, this.damageEnemy);
+	game.physics.arcade.overlap(this.meleeRect, _enemies, this.meleeDamage);
+	console.log(this.canAttack);
 
 }
 
@@ -135,16 +145,20 @@ Player.prototype.shooting = function(state)
 		}
 	}
 	else if(state === "melee"){
-		if(this.shootDirection.right.isDown)
+		if(this.shootDirection.right.isDown && this.canAttack)
 		{
 			//TIMER LOGIC
-			this.meleeRect.x = this.x;
-			this.meleeRect.y = this.y;
+			//Timer prevents killed hitbox to respawn instantly.
+			this.meleeRect.reset(this.x, this.y);
+			this.canAttack = false;
+			this.meleeTime.resume();
 		}
 		else
 		{
-			this.meleeRect.x = 0;
-			this.meleeRect.y = 0;
+			if(this.meleeRect.alive)
+			{
+				this.meleeRect.kill();
+			}
 		}
 	}
 	
@@ -154,7 +168,7 @@ Player.prototype.shooting = function(state)
 Player.prototype.jump = function()
 {
 	this.isGrounded = this.body.blocked.down;
-	//console.log(this.isGrounded);
+
 	if(this.isGrounded) {
 		this.jumps = this.jumpAmount;
 		this.jumping = false;
@@ -187,6 +201,30 @@ Player.prototype.jump = function()
     	this.jumping = false;
 
     }
+}
+
+Player.prototype.damageEnemy = function(bullet, enemy) //sprite goes before group
+{
+	
+	bullet.kill();
+	enemy.damage(10);
+	
+}
+
+Player.prototype.meleeDamage = function(sword, enemy)
+{
+	
+	sword.kill();
+	enemy.damage(50);
+
+	
+}
+
+Player.prototype.meleeAttackFlag = function()
+{
+	
+	this.canAttack = true;
+	this.meleeTime.pause();
 }
 
 //TODO: Damage enemy, Pickup Corpse
