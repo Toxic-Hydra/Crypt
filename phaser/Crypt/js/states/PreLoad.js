@@ -13,6 +13,9 @@ PreLoad.prototype = {	//WE CAN ADD THE LOADING SCREEN HERE
 		game.load.atlas('character', 'assets/img/atlas/character.png', 'assets/img/atlas/character.json');
 		game.load.image('bullet', 'assets/img/bullet.png');
 		game.load.image('tempGround' , 'assets/img/ground.png');
+		
+		game.load.tilemap('testMap', 'assets/map/TestMap.json', null, Phaser.Tilemap.TILED_JSON);
+    	game.load.image('testMapTiles', 'assets/img/tiles/oubliette_tileset.png');
 	},
 	create: function()
 	{
