@@ -18,6 +18,8 @@ var Player = function(game, x, y, key)
 	//upgradeable variables.
 	this.jumpAmount = 1;
 	this.damageGun = 10;
+	this.maxHealth = 100;
+	this.health = 100;
 	//jump variables
 	this.jumping = false;
 	this.inAir = false;
@@ -114,7 +116,6 @@ Player.prototype.shooting = function(state)
 		{
 
 			this.gun.fireAngle = Phaser.ANGLE_RIGHT;
-			//this.gun.fire();
 			this.gun.fireOffset(16,-4);
 		}
 		else if(this.shootDirection.up.isDown)
@@ -187,3 +188,5 @@ Player.prototype.jump = function()
 
     }
 }
+
+//TODO: Damage enemy, Pickup Corpse
