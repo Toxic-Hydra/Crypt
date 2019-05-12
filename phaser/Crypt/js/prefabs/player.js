@@ -227,4 +227,11 @@ Player.prototype.meleeAttackFlag = function()
 	this.meleeTime.pause();
 }
 
-//TODO: Damage enemy, Pickup Corpse
+Player.prototype.upgrade = function(upgrade)
+{
+	if(upgrade.upgradeName == "atkspeed")
+	{
+		//Pretty much the method to use
+		//just compare the name and apply the upgrade.
+	}
+}

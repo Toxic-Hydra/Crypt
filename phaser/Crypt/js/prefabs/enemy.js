@@ -10,6 +10,10 @@ var Enemy = function(game, x, y, key)
 	this.enemySpeed = 300;
 	this.maxHealth = 100;
 	this.setHealth(100);	
+
+	//Enemy States
+	//Enemy states include: Standing, Attack, Path, Pain, Shoot, Chase, Die, Special.
+	this.state = "Standing";
 	
 
 
@@ -24,3 +28,42 @@ Enemy.prototype.update = function()
 
 }
 
+Enemy.prototype.standing = function()
+{
+
+}
+
+Enemy.prototype.attack = function()
+{
+
+}
+
+Enemy.prototype.path = function()
+{
+
+}
+
+Enemy.prototype.pain = function()
+{
+
+}
+
+Enemy.prototype.shoot = function()
+{
+
+}
+
+Enemy.prototype.chase = function()
+{
+
+}
+
+Enemy.prototype.die = function()
+{
+
+}
+
+Enemy.prototype.stateMachine = function()
+{
+	
+}

@@ -1,3 +1,4 @@
+
 var Play = function(game)
 {
 	var mapLayer;
@@ -16,10 +17,9 @@ Play.prototype = {
 		game.stage.backgroundColor = '#8594a3';
 		_player = new Player(game, game.world.centerX, game.world.centerY, 'character');
 		_enemies = game.add.group();
-		//_enemies = new Enemy(game, game.world.centerX - 20, game.world.centerY, 'tempEnemy');
-		//_enemies.add(enemy);
-
-		map = game.add.tilemap('enemytestMap');
+		
+		
+		var map = game.add.tilemap('enemytestMap');
 		map.addTilesetImage('colored', 'colored_transparent');
 		map.setCollisionBetween(1, 1023);
 		mapLayer = map.createLayer('Tile Layer 1');
@@ -41,7 +41,7 @@ Play.prototype = {
 	{
 		game.debug.body(_player);	
 		game.debug.body(_player.meleeRect);
-		game.debug.body(_enemies);
+		game.debug.physicsGroup(_enemies);
 	},
 
 }

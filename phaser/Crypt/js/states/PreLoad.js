@@ -16,7 +16,7 @@ PreLoad.prototype = {	//WE CAN ADD THE LOADING SCREEN HERE
 		game.load.image('tempEnemy' , 'assets/img/placeholderEnemy.png');
 		
 		game.load.tilemap('testMap', 'assets/map/TestMap.json', null, Phaser.Tilemap.TILED_JSON);
-		game.load.tilemap('enemytestMap', 'assets/map/EnemyTest.json', null, Phaser.Tilemap.TILED_JSON);
+		game.load.tilemap('enemytestMap', 'assets/map/EnemyTest.json', null, Phaser.Tilemap.TILED_JSON);//This map has enemy placements using gid: 218 as the enemy.
     	game.load.image('testMapTiles', 'assets/img/tiles/oubliette_tileset.png');
 	},
 	create: function()
