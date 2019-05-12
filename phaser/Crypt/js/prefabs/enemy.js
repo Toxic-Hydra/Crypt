@@ -38,9 +38,16 @@ Enemy.prototype.attack = function()
 
 }
 
-Enemy.prototype.path = function()
+Enemy.prototype.patrol = function(platform) //Pass in Platform group during collisions
 {
-
+	if(this.body.velocity.x > 0 && this.right > platform.right)
+	{
+		this.body.velocity.x *= -1;
+	}
+	else if(this.body.velocity.x < 0 && this.left < platform.left)
+	{
+		this.body.velocity *= -1;
+	}
 }
 
 Enemy.prototype.pain = function()
@@ -55,7 +62,15 @@ Enemy.prototype.shoot = function()
 
 Enemy.prototype.chase = function()
 {
-
+	this.state = "chase";
+	if(_player.x < this.x && this.body.velocity.x >= 0)
+	{
+		this.body.velocity.x = -this.enemySpeed;
+	}
+	else if(_player.x > this.x && this.body.velocity.x <=0)
+	{
+		this.body.velocity.x = this.enemySpeed;
+	}
 }
 
 Enemy.prototype.die = function()
@@ -65,5 +80,8 @@ Enemy.prototype.die = function()
 
 Enemy.prototype.stateMachine = function()
 {
-	
+	if(_player.bottom == this.bottom && game.physics.arcade.distanceBetween(enemy, _player) < 100)
+	{
+		this.chase();
+	}
 }

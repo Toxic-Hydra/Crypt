@@ -233,5 +233,6 @@ Player.prototype.upgrade = function(upgrade)
 	{
 		//Pretty much the method to use
 		//just compare the name and apply the upgrade.
+		this.damageGun +=10;
 	}
 }
