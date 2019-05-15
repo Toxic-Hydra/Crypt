@@ -15,6 +15,7 @@ PreLoad.prototype = {	//WE CAN ADD THE LOADING SCREEN HERE
 		game.load.image('colored_transparent' , 'assets/img/tiles/colored_transparent.png');
 		game.load.image('tempEnemy' , 'assets/img/placeholderEnemy.png');
 		game.load.image('waypoint', 'assets/img/pathcollider.png');
+		game.load.image('atkSpeedUp', 'assets/img/upatkspeed.png');
 		game.load.audio('shoot' , 'assets/audio/shoot1.mp3');
 		
 		game.load.tilemap('testMap', 'assets/map/TestMap.json', null, Phaser.Tilemap.TILED_JSON);

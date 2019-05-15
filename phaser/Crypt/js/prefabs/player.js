@@ -82,7 +82,7 @@ Player.prototype.update = function()
 	this.shooting(this.weaponState);
 	game.physics.arcade.overlap(this.gun.bullets, _enemies, this.damageEnemy);
 	game.physics.arcade.overlap(this.meleeRect, _enemies, this.meleeDamage);
-	//console.log(this.canAttack);
+	game.physics.arcade.collide(this, upgrades, this.upgrade);
 
 	
 
@@ -214,7 +214,9 @@ Player.prototype.damageEnemy = function(bullet, enemy) //sprite goes before grou
 {
 	
 	bullet.kill();
-	enemy.damage(10);
+	enemy.damage(_player.damageGun);
+	console.log(_player.damageGun);
+	enemy.stateMachine.transition('pain');
 	
 }
 
@@ -234,13 +236,15 @@ Player.prototype.meleeAttackFlag = function()
 	this.meleeTime.pause();
 }
 
-Player.prototype.upgrade = function(upgrade)
+Player.prototype.upgrade = function(player, upgrade)
 {
 	if(upgrade.upgradeName == "atkspeed")
 	{
 		//Pretty much the method to use
 		//just compare the name and apply the upgrade.
-		this.damageGun +=10;
+		player.damageGun +=10;
+		console.log("player damage: " + player.damageGun);
+		upgrade.kill();
 	}
 }
 

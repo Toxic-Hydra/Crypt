@@ -8,6 +8,7 @@ var _player;
 var _enemies;
 var mapLayer;
 var reverseWaypoints;
+var upgrades;
 
 
 Play.prototype = {
@@ -21,6 +22,7 @@ Play.prototype = {
 		_player = new Player(game, game.world.centerX, game.world.centerY, 'character');
 		_enemies = game.add.group();
 		reverseWaypoints = game.add.group();
+		upgrades = game.add.group();
 		
 		
 		map = game.add.tilemap('enemytestMap');
@@ -34,6 +36,7 @@ Play.prototype = {
 		map.createFromObjects('enemies', 218, 'tempEnemy', 0, true, false, _enemies, Enemy);
 		//gid:442 for reverse waypoints
 		map.createFromObjects('reverse', 442, 'waypoint', 0, true, false, reverseWaypoints, WayPoint );
+		map.createFromObjects('upgrades', 1, 'atkSpeedUp', 0, true, false, upgrades, Upgrade);
 	},
 	
 	update: function()
