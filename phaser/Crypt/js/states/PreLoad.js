@@ -14,6 +14,8 @@ PreLoad.prototype = {	//WE CAN ADD THE LOADING SCREEN HERE
 		game.load.image('bullet', 'assets/img/bullet.png');
 		game.load.image('colored_transparent' , 'assets/img/tiles/colored_transparent.png');
 		game.load.image('tempEnemy' , 'assets/img/placeholderEnemy.png');
+		game.load.image('waypoint', 'assets/img/pathcollider.png');
+		game.load.audio('shoot' , 'assets/audio/shoot1.mp3');
 		
 		game.load.tilemap('testMap', 'assets/map/TestMap.json', null, Phaser.Tilemap.TILED_JSON);
 		game.load.tilemap('enemytestMap', 'assets/map/EnemyTest.json', null, Phaser.Tilemap.TILED_JSON);//This map has enemy placements using gid: 218 as the enemy.

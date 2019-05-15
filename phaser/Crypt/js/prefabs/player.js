@@ -32,6 +32,7 @@ var Player = function(game, x, y, key)
 	this.gun.trackSprite(this,0,0,false); //Tracks player, can set offsets here but will need to set angle offset in shooting()
 	this.gun.bulletSpeed = 400;
 	this.gun.fireRate = 500;
+	this.gunSound = game.add.audio('shoot');
 	//Weapon: Melee variables
 	/*
 	*What to do, create a state, idle, or attacking, Default: idle
@@ -64,6 +65,8 @@ var Player = function(game, x, y, key)
 	this.weaponChange = game.input.keyboard.addKey(Phaser.Keyboard.R);
 
 	
+
+	
 	game.add.existing(this);
 }
 
@@ -79,7 +82,9 @@ Player.prototype.update = function()
 	this.shooting(this.weaponState);
 	game.physics.arcade.overlap(this.gun.bullets, _enemies, this.damageEnemy);
 	game.physics.arcade.overlap(this.meleeRect, _enemies, this.meleeDamage);
-	console.log(this.canAttack);
+	//console.log(this.canAttack);
+
+	
 
 }
 
@@ -143,6 +148,7 @@ Player.prototype.shooting = function(state)
 			this.gun.fireAngle = Phaser.ANGLE_DOWN;
 			this.gun.fireOffset(16,-4);
 		}
+
 	}
 	else if(state === "melee"){
 		if(this.shootDirection.right.isDown && this.canAttack)
@@ -191,6 +197,7 @@ Player.prototype.jump = function()
         if(this.up.justPressed())
         {
         	//jump animation start or other visuals
+        	this.gunSound.play();
 
         }
         
@@ -236,3 +243,4 @@ Player.prototype.upgrade = function(upgrade)
 		this.damageGun +=10;
 	}
 }
+
