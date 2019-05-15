@@ -94,9 +94,9 @@ Player.prototype.update = function()
 	this.movement();
 	this.jump();
 	this.shooting(this.weaponState);
-	game.physics.arcade.overlap(this.gun.bullets, _enemies, this.damageEnemy);
-	game.physics.arcade.overlap(this.meleeRect, _enemies, this.meleeDamage);
-	game.physics.arcade.collide(this, upgrades, this.upgrade);
+	game.physics.arcade.overlap(this.gun.bullets, _enemies, this.damageEnemy, null, this);
+	game.physics.arcade.overlap(this.meleeRect, _enemies, this.meleeDamage, null, this);
+	game.physics.arcade.collide(this, upgrades, this.upgrade, null, this);
 
 	
 
@@ -228,8 +228,8 @@ Player.prototype.damageEnemy = function(bullet, enemy) //sprite goes before grou
 {
 	
 	bullet.kill();
-	enemy.damage(_player.damageGun);
-	console.log(_player.damageGun);
+	enemy.damage(this.damageGun);
+	console.log(this.damageGun);
 	enemy.stateMachine.transition('pain');
 	
 }
@@ -256,7 +256,7 @@ Player.prototype.upgrade = function(player, upgrade)
 	// Save the upgrade so the player will still have it when going into other rooms
 	gameData.player.upgrades.push(upgradeName);
 	// Actually apply it
-	_player.applyUpgrade(upgradeName);
+	this.applyUpgrade(upgradeName);
 	upgrade.kill();
 }
 Player.prototype.applyUpgrade = function(upgradeName)
@@ -265,8 +265,8 @@ Player.prototype.applyUpgrade = function(upgradeName)
 	{
 		//Pretty much the method to use
 		//just compare the name and apply the upgrade.
-		_player.damageGun +=10;
-		console.log("player damage: " + _player.damageGun);
+		this.damageGun +=10;
+		console.log("player damage: " + this.damageGun);
 		
 	}
 }
