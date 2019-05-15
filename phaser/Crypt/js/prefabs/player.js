@@ -65,18 +65,32 @@ var Player = function(game, x, y, key)
 	this.weaponChange = game.input.keyboard.addKey(Phaser.Keyboard.R);
 
 	
+	this.loadPlayerData();
 
-	
 	game.add.existing(this);
 }
 
 Player.prototype = Object.create(Phaser.Sprite.prototype);
 Player.prototype.constructor = Player;
 
+Player.prototype.loadPlayerData = function()
+{
+	// Load run-specific data
+	for (var i = 0; i < gameData.player.upgrades.length; i++)
+	{
+		this.applyUpgrade(gameData.player.upgrades[i]);
+	}
+}
 
 
 Player.prototype.update = function()
 {
+	if (this.y > game.world.height - this.height - 10)
+	{
+		// fell off the screen 
+		LevelLoader.playerDied();
+	}
+
 	this.movement();
 	this.jump();
 	this.shooting(this.weaponState);
@@ -236,11 +250,18 @@ Player.prototype.meleeAttackFlag = function()
 
 Player.prototype.upgrade = function(upgrade)
 {
-	if(upgrade.upgradeName == "atkspeed")
+	var upgradeName = upgrade.upgradeName;
+	// Save the upgrade so the player will still have it when going into other rooms
+	gameData.player.upgrades.push(upgradeName);
+	// Actually apply it
+	this.applyUpgrade(upgradeName);
+}
+Player.prototype.applyUpgrade = function(upgradeName)
+{
+	if (upgradeName == "atkspeed")
 	{
 		//Pretty much the method to use
 		//just compare the name and apply the upgrade.
 		this.damageGun +=10;
 	}
 }
-

@@ -15,14 +15,16 @@ PreLoad.prototype = {	//WE CAN ADD THE LOADING SCREEN HERE
 		game.load.image('colored_transparent' , 'assets/img/tiles/colored_transparent.png');
 		game.load.image('tempEnemy' , 'assets/img/placeholderEnemy.png');
 		game.load.image('waypoint', 'assets/img/pathcollider.png');
+		game.load.image('enterDoor', 'assets/img/enterDoor.png');
+		game.load.image('exitDoor', 'assets/img/exitDoor.png');
 		game.load.audio('shoot' , 'assets/audio/shoot1.mp3');
 		
-		game.load.tilemap('testMap', 'assets/map/TestMap.json', null, Phaser.Tilemap.TILED_JSON);
-		game.load.tilemap('enemytestMap', 'assets/map/EnemyTest.json', null, Phaser.Tilemap.TILED_JSON);//This map has enemy placements using gid: 218 as the enemy.
-    	game.load.image('testMapTiles', 'assets/img/tiles/oubliette_tileset.png');
+		game.load.tilemap('map1', 'assets/map/EnemyTest.json', null, Phaser.Tilemap.TILED_JSON);
+		game.load.tilemap('map2', 'assets/map/Map2.json', null, Phaser.Tilemap.TILED_JSON);
+		game.load.tilemap('map3', 'assets/map/Map3.json', null, Phaser.Tilemap.TILED_JSON);
 	},
 	create: function()
 	{
-		game.state.start("play"); //Really this should be MainMenu, but for placeholder testing it will be play.
+		game.state.start("newLife");
 	}
 }
