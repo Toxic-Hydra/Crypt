@@ -29,6 +29,7 @@ LevelLoader.createMap = function(playState)
 
     map.createFromObjects('enemies', 218, 'tempEnemy', 0, true, false, _enemies, Enemy);
     map.createFromObjects('reverse', 442, 'waypoint', 0, true, false, reverseWaypoints, WayPoint );
+    map.createFromObjects('upgrades', 1, 'atkSpeedUp', 0, true, false, upgrades, Upgrade);
     map.createFromObjects('doors', 290, 'enterDoor', 0, true, false, playState.doors);
     map.createFromObjects('doors', 291, 'exitDoor', 0, true, false, playState.doors, Door);
 }

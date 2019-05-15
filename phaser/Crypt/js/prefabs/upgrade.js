@@ -11,8 +11,3 @@ var Upgrade = function(game, x, y, key)
 
 Upgrade.prototype = Object.create(Phaser.Sprite.prototype);
 Upgrade.prototype.constructor = Upgrade;
-
-Upgrade.prototype.update = function()
-{
-	game.physics.arcade.collide(this, mapLayer);
-}

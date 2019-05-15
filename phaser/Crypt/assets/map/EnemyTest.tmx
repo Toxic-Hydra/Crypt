@@ -1,9 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<<<<<<< HEAD
-<map version="1.2" tiledversion="1.2.3" orientation="orthogonal" renderorder="right-down" width="50" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="5" nextobjectid="14">
-=======
-<map version="1.2" tiledversion="1.2.3" orientation="orthogonal" renderorder="right-down" width="50" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="5" nextobjectid="16">
->>>>>>> 08c2873c7b1d39dc070078125e0bb61c0cf09a71
+<map version="1.2" tiledversion="1.2.3" orientation="orthogonal" renderorder="right-down" width="50" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="18">
  <tileset firstgid="1" name="colored" tilewidth="16" tileheight="16" spacing="1" tilecount="1024" columns="32">
   <image source="../img/tiles/colored_transparent.png" width="543" height="543"/>
  </tileset>
@@ -51,6 +47,9 @@
 577,578,578,578,578,578,578,578,578,578,578,578,578,578,578,578,578,578,578,578,578,578,578,578,578,578,578,578,578,578,578,578,578,578,578,578,578,578,578,578,578,578,578,578,578,578,578,578,578,579
 </data>
  </layer>
+ <objectgroup id="5" name="upgrades">
+  <object id="17" gid="1" x="212" y="459" width="16" height="16"/>
+ </objectgroup>
  <objectgroup id="3" name="reverse">
   <object id="7" gid="442" x="665" y="464" width="16" height="16"/>
   <object id="8" gid="442" x="74" y="463" width="16" height="16"/>
@@ -58,9 +57,6 @@
   <object id="10" gid="442" x="25" y="319" width="16" height="16"/>
   <object id="11" gid="442" x="153" y="158" width="16" height="16"/>
   <object id="12" gid="442" x="25" y="158" width="16" height="16"/>
- </objectgroup>
- <objectgroup id="4" name="upgrades">
-  <object id="13" gid="1" x="105" y="462" width="16" height="16"/>
  </objectgroup>
  <objectgroup id="2" name="enemies">
   <object id="1" gid="218" x="47" y="312" width="16" height="16"/>

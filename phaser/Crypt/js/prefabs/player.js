@@ -256,7 +256,8 @@ Player.prototype.upgrade = function(player, upgrade)
 	// Save the upgrade so the player will still have it when going into other rooms
 	gameData.player.upgrades.push(upgradeName);
 	// Actually apply it
-	this.applyUpgrade(upgradeName);
+	_player.applyUpgrade(upgradeName);
+	upgrade.kill();
 }
 Player.prototype.applyUpgrade = function(upgradeName)
 {
@@ -264,8 +265,8 @@ Player.prototype.applyUpgrade = function(upgradeName)
 	{
 		//Pretty much the method to use
 		//just compare the name and apply the upgrade.
-		player.damageGun +=10;
-		console.log("player damage: " + player.damageGun);
-		upgrade.kill();
+		_player.damageGun +=10;
+		console.log("player damage: " + _player.damageGun);
+		
 	}
 }

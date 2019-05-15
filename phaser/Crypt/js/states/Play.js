@@ -31,6 +31,7 @@ Play.prototype = {
 		game.physics.arcade.collide(_player, this.mapLayer);
 		game.physics.arcade.collide(_enemies, this.mapLayer);
 		game.physics.arcade.overlap(_player, _enemies);
+		game.physics.arcade.collide(upgrades, this.mapLayer);
 
 
 	},
