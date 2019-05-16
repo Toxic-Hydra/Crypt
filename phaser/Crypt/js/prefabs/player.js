@@ -63,6 +63,8 @@ var Player = function(game, x, y, key)
 	this.shootDirection = game.input.keyboard.createCursorKeys();
 	//Change weapon
 	this.weaponChange = game.input.keyboard.addKey(Phaser.Keyboard.R);
+	//Pain state immune
+	this.immune = false;
 
 	
 	this.loadPlayerData();
@@ -104,23 +106,24 @@ Player.prototype.update = function()
 
 Player.prototype.movement = function()
 {
-	if(this.moveLeft.isDown)
-	{
-		//animation left
+	if(!this.immune){
+		if(this.moveLeft.isDown)
+		{
+			//animation left
 
-		this.body.velocity.x = this.characterSpeed;
+			this.body.velocity.x = this.characterSpeed;
+		}
+		else if(this.moveRight.isDown)
+		{
+			//animation right
+			this.body.velocity.x = -this.characterSpeed;
+		}
+		else
+		{
+			//animation idle
+			this.body.velocity.x = 0;
+		}
 	}
-	else if(this.moveRight.isDown)
-	{
-		//animation right
-		this.body.velocity.x = -this.characterSpeed;
-	}
-	else
-	{
-		//animation idle
-		this.body.velocity.x = 0;
-	}
-
 
 
 }
@@ -269,4 +272,35 @@ Player.prototype.applyUpgrade = function(upgradeName)
 		console.log("player damage: " + this.damageGun);
 		
 	}
+}
+
+Player.prototype.pain = function(direction)
+{
+	if(!_player.immune){
+		_player.immune = true;
+		console.log('ow');
+		console.log(direction);
+		_player.tint = Phaser.Color.RED;
+		if(direction > 0)
+		{
+			_player.body.velocity.x = -150;
+			_player.body.velocity.y = -200;
+		}
+		else if(direction < 0)
+		{
+			_player.body.velocity.x = 150;
+			_player.body.velocity.y = -200;
+		}
+
+		game.time.events.add(300, function(){
+			_player.tint = Phaser.Color.WHITE;
+			_player.immune = false;
+		}, this);
+		
+	}
+}
+
+Player.prototype.kill = function()
+{
+	LevelLoader.playerDied();
 }

@@ -10,7 +10,8 @@ var Enemy = function(game, x, y, key)
 	this.enemySpeed = 100;
 	this.maxHealth = 100;
 	this.setHealth(100);
-	this.chaseRange = 30;	
+	this.chaseRange = 30;
+	this.playerDamage = 10;	
 
 	//Enemy States
 	//Enemy states include: Standing, Attack, Path, Pain, Shoot, Chase, Die, Special.
@@ -21,7 +22,7 @@ var Enemy = function(game, x, y, key)
 		//idle: new IdleState(),
 		patrol: new PatrolState(),
 		chase: new ChaseState(),
-		//attack: new AttackState(),
+		attack: new AttackState(),
 		pain: new PainState(),
 		//die: new DieState(),
 		//shooting: new ShootState(),
@@ -84,14 +85,18 @@ class PainState extends State{  //Lets play with this state a bit more. needs so
 	enter(game, enemy)
 	{
 		enemy.tint = Phaser.Color.RED;
+		enemy.body.velocity.x = 0;
 		//Experiment with tweening the character red for a longer looking pain state.
 	}
 
 	execute(game, enemy)
 	{
 		//can add timers here for a stun state or other such variables
-		enemy.tint = Phaser.Color.WHITE;
-		enemy.stateMachine.transition('chase');
+		game.time.events.add(500, function(){
+			enemy.tint = Phaser.Color.WHITE;
+			enemy.stateMachine.transition('chase');
+		});
+		
 	}
 }
 
@@ -125,12 +130,43 @@ class ChaseState extends State {
 		{
 			enemy.stateMachine.transition('patrol');
 		}
+
+		game.physics.arcade.collide(enemy, _player, function(enemy){
+			enemy.stateMachine.transition('attack');
+		});
 		
 		enemy.chase(enemy);
 		enemy.body.velocity.x = enemy.enemySpeed;
 
 	}
 }
+
+
+class AttackState extends State {
+	enter(game, enemy)
+	{
+	
+	}
+
+	execute(game, enemy)
+	{
+		//sets the speed to 0, if colliding deals damage to player.
+		enemy.body.velocity.x = 0;
+		//Attack
+		_player.damage(enemy.playerDamage);
+		if(enemy.enemySpeed > 0)
+		{
+			_player.pain(-1);
+
+		}
+		else if(enemy.enemySpeed < 0)
+		{
+			_player.pain(1);
+		}
+		enemy.stateMachine.transition('patrol');
+	}
+}
+
 
 /*Enemy.prototype.kill = function() //we have the ability to override base functions, add animations and sounds for death here.
 {
