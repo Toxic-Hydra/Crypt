@@ -5,6 +5,7 @@ var Enemy = function(game, x, y, key)
 	Phaser.Sprite.call(this, game, x, y, key);
 	//Arcade
 	game.physics.arcade.enableBody(this);
+	this.anchor.setTo(0.5);
 	this.body.gravity.y = 900;
 	this.body.collideWorldBounds = true;
 	this.enemySpeed = 100;
@@ -37,11 +38,6 @@ Enemy.prototype.constructor = Enemy;
 Enemy.prototype.update = function()
 {
 	this.stateMachine.step();
-}
-
-Enemy.prototype.attack = function()
-{
-
 }
 
 Enemy.prototype.patrol = function(enemy, waypoint) //Pass in Platform group during collisions
@@ -100,10 +96,6 @@ class PainState extends State{  //Lets play with this state a bit more. needs so
 	}
 }
 
-Enemy.prototype.shoot = function()
-{
-
-}
 
 Enemy.prototype.chase = function(enemy)
 {

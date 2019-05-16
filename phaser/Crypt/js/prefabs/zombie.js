@@ -6,7 +6,8 @@ var Zombie = function(game, x, y, key)
 	this.tint = Phaser.Color.RED;
 
 	this.enemyWeapon = game.add.weapon(6, 'bullet');
-	this.enemyWeapon.fireRate = 300;
+	this.canShoot = true;
+	this.enemyWeapon.fireRate = 500;
 	this.enemyWeapon.bulletSpeed = 400;
 	this.enemyWeapon.bulletKillType = Phaser.Weapon.KILL_CAMERA_BOUNDS;
 	/*this.enemyWeapon.onfire.add(function(){
@@ -71,28 +72,50 @@ class ShootState extends State
 		}
 
 		enemy.body.velocity.x = 0;
-		if(enemy.x < _player.x)
-		{
-			if(enemy.enemySpeed <=0)
+
+		if(enemy.canShoot){
+			if(enemy.x < _player.x)
 			{
-				enemy.enemySpeed *=-1;
+				if(enemy.enemySpeed <=0)
+				{
+					enemy.enemySpeed *=-1;
+				}
+				
+				enemy.enemyWeapon.fireAngle = 0;
+				enemy.enemyWeapon.fire();
 			}
-			
-			enemy.enemyWeapon.fireAngle = 0;
-			enemy.enemyWeapon.fire();
-		}
-		else if(_player.x < enemy.x)
-		{
-			if(enemy.enemySpeed >= 0)
+			else if(_player.x < enemy.x)
 			{
-				enemy.enemySpeed *= -1;
+				if(enemy.enemySpeed >= 0)
+				{
+					enemy.enemySpeed *= -1;
+				}
+				
+				enemy.enemyWeapon.fireAngle = -180;
+				enemy.enemyWeapon.fire();
 			}
-			
-			enemy.enemyWeapon.fireAngle = -180;
-			enemy.enemyWeapon.fire();
 		}
 
 		console.log(enemy.enemySpeed);
 
 	}
+}
+
+
+
+Enemy.prototype.kill = function() //we have the ability to override base functions, add animations and sounds for death here.
+{
+  this.alive = false;
+    this.exists = false;
+    this.visible = false;
+    this.canShoot = false;
+
+
+
+    if (this.events)
+    {
+        this.events.onKilled$dispatch(this);
+    }
+
+    return this;
 }

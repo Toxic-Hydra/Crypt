@@ -11,3 +11,12 @@ var Upgrade = function(game, x, y, key)
 
 Upgrade.prototype = Object.create(Phaser.Sprite.prototype);
 Upgrade.prototype.constructor = Upgrade;
+
+
+var ShotUpgrade = function(game, x, y, key)
+{
+	Upgrade.call(this, game, x, y, key);
+	this.upgradeName = "shotgun";
+}
+ShotUpgrade.prototype = Object.create(Upgrade.prototype);
+ShotUpgrade.prototype.constructor = ShotUpgrade;

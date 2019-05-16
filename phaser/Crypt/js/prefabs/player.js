@@ -25,6 +25,7 @@ var Player = function(game, x, y, key)
 	this.inAir = false;
 
 	this.weaponState = "gun"; //default weapon
+	this.currentgun = "gun";
 	//Weapon: Gun variables
 	this.bullets = 6;
 	this.gun = game.add.weapon(this.bullets,'bullet');
@@ -33,6 +34,7 @@ var Player = function(game, x, y, key)
 	this.gun.bulletSpeed = 400;
 	this.gun.fireRate = 500;
 	this.gunSound = game.add.audio('shoot');
+	this.gun.bulletAngleVariance = 5;
 	//Weapon: Melee variables
 	/*
 	*What to do, create a state, idle, or attacking, Default: idle
@@ -144,26 +146,72 @@ Player.prototype.shooting = function(state)
 	}
 
 	if(state === "gun"){
-		if(this.shootDirection.right.isDown)
+		if(this.currentgun == "gun"){
+			if(this.shootDirection.right.isDown)
+			{
+
+				this.gun.fireAngle = Phaser.ANGLE_RIGHT;
+				this.gun.fireOffset(16,-4);
+			}
+			else if(this.shootDirection.up.isDown)
+			{
+				this.gun.fireAngle = Phaser.ANGLE_UP;
+				this.gun.fireOffset(16,-4);//Need to set these offsets according to the sprite animations
+			}
+			else if(this.shootDirection.left.isDown)
+			{
+				this.gun.fireAngle = Phaser.ANGLE_LEFT;
+				this.gun.fireOffset(16,-4);
+			}
+			else if(this.shootDirection.down.isDown)
+			{
+				this.gun.fireAngle = Phaser.ANGLE_DOWN;
+				this.gun.fireOffset(16,-4);
+			}
+		}
+		else if(this.currentgun == "shotgun")
 		{
 
-			this.gun.fireAngle = Phaser.ANGLE_RIGHT;
-			this.gun.fireOffset(16,-4);
-		}
-		else if(this.shootDirection.up.isDown)
-		{
-			this.gun.fireAngle = Phaser.ANGLE_UP;
-			this.gun.fireOffset(16,-4);//Need to set these offsets according to the sprite animations
-		}
-		else if(this.shootDirection.left.isDown)
-		{
-			this.gun.fireAngle = Phaser.ANGLE_LEFT;
-			this.gun.fireOffset(16,-4);
-		}
-		else if(this.shootDirection.down.isDown)
-		{
-			this.gun.fireAngle = Phaser.ANGLE_DOWN;
-			this.gun.fireOffset(16,-4);
+			if(this.shootDirection.right.isDown)
+			{
+
+				this.gun.fireAngle = Phaser.ANGLE_RIGHT;
+				this.gun.fireOffset(16,-4);
+				this.gun.fireOffset(16,-4);
+				this.gun.fireOffset(16,-4);
+				this.gun.fireOffset(16,-4);
+				this.gun.fireOffset(16,-4);
+			}
+			else if(this.shootDirection.up.isDown)
+			{
+				this.gun.fireAngle = Phaser.ANGLE_UP;
+				this.gun.fireOffset(16,-4);//Need to set these offsets according to the sprite animations
+				this.gun.fireOffset(16,-4);
+				this.gun.fireOffset(16,-4);
+				this.gun.fireOffset(16,-4);
+				this.gun.fireOffset(16,-4);
+				this.gun.fireOffset(16,-4);
+			}
+			else if(this.shootDirection.left.isDown)
+			{
+				this.gun.fireAngle = Phaser.ANGLE_LEFT;
+				this.gun.fireOffset(16,-4);
+				this.gun.fireOffset(16,-4);
+				this.gun.fireOffset(16,-4);
+				this.gun.fireOffset(16,-4);
+				this.gun.fireOffset(16,-4);
+				this.gun.fireOffset(16,-4);
+			}
+			else if(this.shootDirection.down.isDown)
+			{
+				this.gun.fireAngle = Phaser.ANGLE_DOWN;
+				this.gun.fireOffset(16,-4);
+				this.gun.fireOffset(16,-4);
+				this.gun.fireOffset(16,-4);
+				this.gun.fireOffset(16,-4);
+				this.gun.fireOffset(16,-4);
+				this.gun.fireOffset(16,-4);
+			}
 		}
 
 	}
@@ -184,6 +232,7 @@ Player.prototype.shooting = function(state)
 			}
 		}
 	}
+	
 	
 
 }
@@ -271,6 +320,16 @@ Player.prototype.applyUpgrade = function(upgradeName)
 		this.damageGun +=10;
 		console.log("player damage: " + this.damageGun);
 		
+	}
+	if(upgradeName == "shotgun")
+	{
+		this.currentgun = "shotgun";
+		this.bullets = 36;
+		this.gun.createBullets(this.bullets);
+		this.gun.fireRate = 1000;
+		this.gun.multiFire = true;
+		this.gun.bulletKillType = Phaser.Weapon.KILL_DISTANCE;
+		this.gun.bulletKillDistance = 100;
 	}
 }
 

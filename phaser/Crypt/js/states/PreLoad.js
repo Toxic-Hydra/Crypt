@@ -16,6 +16,7 @@ PreLoad.prototype = {	//WE CAN ADD THE LOADING SCREEN HERE
 		game.load.image('tempEnemy' , 'assets/img/placeholderEnemy.png');
 		game.load.image('waypoint', 'assets/img/pathcollider.png');
 		game.load.image('atkSpeedUp', 'assets/img/upatkspeed.png');
+		game.load.image('shotPower' , 'assets/img/shotpower.png');
 
 		game.load.image('enterDoor', 'assets/img/enterDoor.png');
 		game.load.image('exitDoor', 'assets/img/exitDoor.png');
