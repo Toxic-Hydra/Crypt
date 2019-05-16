@@ -3,6 +3,7 @@ var Play = function(game)
 {
 	var mapLayer;
 	var doors;
+	var zombie;
 };
 
 var _player;
@@ -23,6 +24,7 @@ Play.prototype = {
 		
 		var enterDoor = this.doors.getBottom();
 		_player = new Player(game, enterDoor.x, enterDoor.y - 5, 'character');
+		zombie = new Zombie(game, game.world.centerX, game.world.centerY, 'tempEnemy');
 	},
 	
 	update: function()
@@ -32,6 +34,7 @@ Play.prototype = {
 		game.physics.arcade.collide(_enemies, this.mapLayer);
 		game.physics.arcade.overlap(_player, _enemies);
 		game.physics.arcade.collide(upgrades, this.mapLayer);
+		game.physics.arcade.collide(zombie, this.mapLayer);
 
 
 	},
@@ -41,6 +44,7 @@ Play.prototype = {
 		//game.debug.body(_player.meleeRect);
 		//game.debug.physicsGroup(_enemies);
 		//game.debug.physicsGroup(reverseWaypoints);
+		//game.debug.body(zombie);
 	},
 	
 

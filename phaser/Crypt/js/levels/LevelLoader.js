@@ -32,4 +32,6 @@ LevelLoader.createMap = function(playState)
     map.createFromObjects('upgrades', 1, 'atkSpeedUp', 0, true, false, upgrades, Upgrade);
     map.createFromObjects('doors', 290, 'enterDoor', 0, true, false, playState.doors);
     map.createFromObjects('doors', 291, 'exitDoor', 0, true, false, playState.doors, Door);
+
+    
 }
