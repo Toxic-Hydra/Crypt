@@ -26,6 +26,7 @@ PreLoad.prototype = {	//WE CAN ADD THE LOADING SCREEN HERE
 		game.load.audio('shoot' , 'assets/audio/shoot1.mp3');
 		
 		game.load.tilemap('map1', 'assets/map/EnemyTest.json', null, Phaser.Tilemap.TILED_JSON);
+		game.load.tilemap('expanse', 'assets/map/Map1.json', null, Phaser.Tilemap.TILED_JSON);
 		game.load.tilemap('map2', 'assets/map/Map2.json', null, Phaser.Tilemap.TILED_JSON);
 		game.load.tilemap('map3', 'assets/map/Map3.json', null, Phaser.Tilemap.TILED_JSON);
 	},

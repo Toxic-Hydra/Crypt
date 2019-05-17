@@ -49,7 +49,6 @@
  </layer>
  <objectgroup id="5" name="upgrades">
   <object id="17" gid="1" x="212" y="459" width="16" height="16"/>
-  <object id="19" gid="1000" x="616.667" y="206.667" width="16" height="16"/>
  </objectgroup>
  <objectgroup id="3" name="reverse">
   <object id="7" gid="442" x="665" y="464" width="16" height="16"/>

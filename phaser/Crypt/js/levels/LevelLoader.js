@@ -16,7 +16,7 @@ LevelLoader.nextRoom = function()
 LevelLoader.chooseMap = function()
 {
     // This list should be randomized each run, but for testing it's convenient not to
-    var maps = [ 'map1', 'map2', 'map3' ];
+    var maps = [ 'map1', 'expanse', 'map2', 'map3' ];
     return maps[gameData.room % maps.length];
 }
 
