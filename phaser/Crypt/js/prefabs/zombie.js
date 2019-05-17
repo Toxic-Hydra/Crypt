@@ -103,7 +103,7 @@ class ShootState extends State
 
 
 
-Enemy.prototype.kill = function() //we have the ability to override base functions, add animations and sounds for death here.
+Zombie.prototype.kill = function() //we have the ability to override base functions, add animations and sounds for death here.
 {
   this.alive = false;
     this.exists = false;
@@ -118,4 +118,23 @@ Enemy.prototype.kill = function() //we have the ability to override base functio
     }
 
     return this;
+}
+
+Zombie.prototype.update = function()
+{
+	game.physics.arcade.collide(this.enemyWeapon.bullets, _player, this.zombieDamage, null, this);
+	this.stateMachine.step();
+}
+
+Zombie.prototype.zombieDamage = function()
+{
+	_player.damage(this.playerDamage);
+	if(_player.x < this.x)
+	{
+		_player.pain(-1);
+	}
+	else if(this.x < _player)
+	{
+		_player.pain(1);
+	}
 }

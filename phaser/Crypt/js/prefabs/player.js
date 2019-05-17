@@ -34,7 +34,7 @@ var Player = function(game, x, y, key)
 	this.gun.bulletSpeed = 400;
 	this.gun.fireRate = 500;
 	this.gunSound = game.add.audio('shoot');
-	this.gun.bulletInheritSpriteSpeed = true;
+	//this.gun.bulletInheritSpriteSpeed = true;
 	//Weapon: Melee variables
 	/*
 	*What to do, create a state, idle, or attacking, Default: idle
@@ -330,7 +330,7 @@ Player.prototype.applyUpgrade = function(upgradeName)
 		this.gun.fireRate = 1000;
 		this.gun.multiFire = true;
 		this.gun.bulletKillType = Phaser.Weapon.KILL_DISTANCE;
-		this.gun.bulletKillDistance = 100;
+		this.gun.bulletKillDistance = 300;
 	}
 }
 
