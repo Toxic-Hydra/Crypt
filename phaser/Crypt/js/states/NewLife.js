@@ -31,12 +31,14 @@ NewLife.prototype = {
         text.smoothed = false;
         text.tint = Phaser.Color.BLACK;
         text.anchor.set(0.5);
-        
+
         // Wait for spacebar press, then go to Play state
         var key = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
         key.onDown.addOnce(this.startRun, this);
+
+				game.camera.flash('#000000', 1000);
     },
-    
+
     startRun: function()
     {
         game.state.start('play');

@@ -3,13 +3,14 @@ LevelLoader = new Object();
 
 LevelLoader.playerDied = function()
 {
-    game.state.start("death");
+    game.camera.fade('#000000', 250);
+    game.camera.onFadeComplete.addOnce(LevelLoader.playerDiedFade);
 }
 
 LevelLoader.nextRoom = function()
 {
-    gameData.room += 1;
-    game.state.start("play");
+    game.camera.fade('#000000', 250);
+    game.camera.onFadeComplete.addOnce(LevelLoader.nextRoomFade);
 }
 
 LevelLoader.chooseMap = function()
@@ -36,4 +37,15 @@ LevelLoader.createMap = function(playState)
     map.createFromObjects('doors', 291, 'exitDoor', 0, true, false, playState.doors, Door);
 
 
+}
+
+LevelLoader.playerDiedFade = function()
+{
+    game.state.start("death");
+}
+
+LevelLoader.nextRoomFade = function()
+{
+    gameData.room += 1;
+    game.state.start("play");
 }
