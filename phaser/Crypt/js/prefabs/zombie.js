@@ -7,7 +7,7 @@ var Zombie = function(game, x, y, key)
 
 	this.enemyWeapon = game.add.weapon(6, 'bullet');
 	this.canShoot = true;
-	this.enemyWeapon.fireRate = 500;
+	this.enemyWeapon.fireRate = 1000;
 	this.enemyWeapon.bulletSpeed = 400;
 	this.enemyWeapon.bulletKillType = Phaser.Weapon.KILL_CAMERA_BOUNDS;
 	/*this.enemyWeapon.onfire.add(function(){

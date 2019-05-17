@@ -13,7 +13,7 @@ var gameData = {
     corpses: [ ]
 };
 
-var game = new Phaser.Game(800, 600, Phaser.AUTO, '');
+var game = new Phaser.Game(1024, 768, Phaser.AUTO, '');//800 x 600
 
 //game.state.add("Main", MainMenu);
 game.state.add("preload", PreLoad);

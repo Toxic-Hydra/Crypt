@@ -34,7 +34,7 @@ var Player = function(game, x, y, key)
 	this.gun.bulletSpeed = 400;
 	this.gun.fireRate = 500;
 	this.gunSound = game.add.audio('shoot');
-	this.gun.bulletAngleVariance = 5;
+	this.gun.bulletInheritSpriteSpeed = true;
 	//Weapon: Melee variables
 	/*
 	*What to do, create a state, idle, or attacking, Default: idle
@@ -67,7 +67,7 @@ var Player = function(game, x, y, key)
 	this.weaponChange = game.input.keyboard.addKey(Phaser.Keyboard.R);
 	//Pain state immune
 	this.immune = false;
-
+	game.camera.follow(this, Phaser.Camera.FOLLOW_PLATFORMER);
 	
 	this.loadPlayerData();
 
@@ -106,7 +106,7 @@ Player.prototype.update = function()
 
 }
 
-Player.prototype.movement = function()
+Player.prototype.movement = function() //if jumping limit speed
 {
 	if(!this.immune){
 		if(this.moveLeft.isDown)
@@ -255,7 +255,7 @@ Player.prototype.jump = function()
 	}
 
 	
-    if(this.jumps > 0 && this.up.downDuration( 150)) {
+    if(this.jumps > 0 && this.up.downDuration(150)) {
         this.body.velocity.y = -400;
         this.jumping = true;
         //Jump particle effect needs to happen only once per press
@@ -326,6 +326,7 @@ Player.prototype.applyUpgrade = function(upgradeName)
 		this.currentgun = "shotgun";
 		this.bullets = 36;
 		this.gun.createBullets(this.bullets);
+		this.gun.bulletAngleVariance = 5;
 		this.gun.fireRate = 1000;
 		this.gun.multiFire = true;
 		this.gun.bulletKillType = Phaser.Weapon.KILL_DISTANCE;
@@ -337,8 +338,6 @@ Player.prototype.pain = function(direction)
 {
 	if(!_player.immune){
 		_player.immune = true;
-		console.log('ow');
-		console.log(direction);
 		_player.tint = Phaser.Color.RED;
 		if(direction > 0)
 		{

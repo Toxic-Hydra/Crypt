@@ -21,6 +21,8 @@ PreLoad.prototype = {	//WE CAN ADD THE LOADING SCREEN HERE
 		game.load.image('enterDoor', 'assets/img/enterDoor.png');
 		game.load.image('exitDoor', 'assets/img/exitDoor.png');
 
+		game.load.bitmapFont('carrier', 'assets/fonts/carrier_command.png', 'assets/fonts/carrier_command.xml');
+
 		game.load.audio('shoot' , 'assets/audio/shoot1.mp3');
 		
 		game.load.tilemap('map1', 'assets/map/EnemyTest.json', null, Phaser.Tilemap.TILED_JSON);
