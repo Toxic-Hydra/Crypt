@@ -9,6 +9,7 @@ LevelLoader.playerDied = function(leaveCorpse)
             room: gameData.roomName,
             x: _player.x,
             y: _player.y,
+            consumed: false,
             upgrades: gameData.player.upgrades.slice()
         };
         gameData.corpses.push(corpse);
@@ -20,6 +21,7 @@ LevelLoader.playerDied = function(leaveCorpse)
 
 LevelLoader.nextRoom = function()
 {
+    //_player.visible = false;
     game.camera.fade('#000000', 250);
     game.camera.onFadeComplete.addOnce(LevelLoader.nextRoomFade);
 }
