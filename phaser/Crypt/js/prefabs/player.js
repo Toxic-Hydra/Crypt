@@ -92,7 +92,7 @@ Player.prototype.update = function()
 	if (this.y > game.world.height - this.height - 10)
 	{
 		// fell off the screen 
-		LevelLoader.playerDied();
+		LevelLoader.playerDied(false);
 	}
 
 	this.movement();

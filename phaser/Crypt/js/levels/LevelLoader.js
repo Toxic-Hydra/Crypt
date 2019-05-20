@@ -1,8 +1,19 @@
 
 LevelLoader = new Object();
 
-LevelLoader.playerDied = function()
+LevelLoader.playerDied = function(leaveCorpse)
 {
+    if (leaveCorpse)
+    {
+        var corpse = {
+            room: gameData.roomName,
+            x: _player.x,
+            y: _player.y,
+            upgrades: gameData.player.upgrades.slice()
+        };
+        gameData.corpses.push(corpse);
+    }
+
     game.camera.fade('#000000', 250);
     game.camera.onFadeComplete.addOnce(LevelLoader.playerDiedFade);
 }
@@ -22,7 +33,8 @@ LevelLoader.chooseMap = function()
 
 LevelLoader.createMap = function(playState)
 {
-    var map = game.add.tilemap(this.chooseMap());
+    gameData.roomName = this.chooseMap();
+    var map = game.add.tilemap(gameData.roomName);
     map.addTilesetImage('colored', 'colored_transparent');
     map.setCollisionBetween(1, 1023);
     playState.mapLayer = map.createLayer('Tile Layer 1');
@@ -36,7 +48,19 @@ LevelLoader.createMap = function(playState)
     map.createFromObjects('doors', 290, 'enterDoor', 0, true, false, playState.doors);
     map.createFromObjects('doors', 291, 'exitDoor', 0, true, false, playState.doors, Door);
 
+    LevelLoader.loadCorpses();
+}
 
+LevelLoader.loadCorpses = function()
+{
+    for (var i = 0; i < gameData.corpses.length; i++)
+    {
+        var corpse = gameData.corpses[i];
+        if (corpse.room == gameData.roomName)
+        {
+            new Corpse(game, corpse);
+        }
+    }
 }
 
 LevelLoader.playerDiedFade = function()
