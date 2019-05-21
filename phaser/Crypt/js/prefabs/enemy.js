@@ -9,10 +9,12 @@ var Enemy = function(game, x, y, key)
 	this.body.gravity.y = 900;
 	this.body.collideWorldBounds = true;
 	this.enemySpeed = 100;
-	this.maxHealth = 100;
+	this.maxHealth = 100; //Should be upgraded each map, percentage can be done with * 1.05 for 5% etc.
 	this.setHealth(100);
 	this.chaseRange = 30;
 	this.playerDamage = 10;	
+
+	//Enemies should have a upgrade drop chance
 
 	//Enemy States
 	//Enemy states include: Standing, Attack, Path, Pain, Shoot, Chase, Die, Special.

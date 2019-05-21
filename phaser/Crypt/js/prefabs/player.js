@@ -14,9 +14,9 @@ var Player = function(game, x, y, key)
 	this.body.maxVelocity.x = 1000;
 	this.body.maxVelocity.y = 5000;
 	this.body.collideWorldBounds = true;
-	this.characterSpeed = 500;
+	this.characterSpeed = 200;
 	//upgradeable variables.
-	this.jumpAmount = 1;
+	this.jumpAmount = 2;
 	this.damageGun = 10;
 	this.maxHealth = 100;
 	this.health = 100;
@@ -319,7 +319,7 @@ Player.prototype.applyUpgrade = function(upgradeName)
 	{
 		//Pretty much the method to use
 		//just compare the name and apply the upgrade.
-		this.damageGun +=10;
+		this.damageGun *=1.05;//increases damage by 5 percent
 		console.log("player damage: " + this.damageGun);
 		
 	}
@@ -333,6 +333,14 @@ Player.prototype.applyUpgrade = function(upgradeName)
 		this.gun.multiFire = true;
 		this.gun.bulletKillType = Phaser.Weapon.KILL_DISTANCE;
 		this.gun.bulletKillDistance = 300;
+	}
+	if(upgradeName == "jump")
+	{
+		this.jumpAmount += 1;
+	}
+	if(upgradeName == "fireUp")
+	{
+		this.gun.fireRate *= 0.95; //decreases cooldown by 5 percent
 	}
 }
 

@@ -3,7 +3,6 @@ var Play = function(game)
 {
 	var mapLayer;
 	var doors;
-	//var zombie;
 };
 
 var _player;
