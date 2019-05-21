@@ -94,7 +94,7 @@ Player.prototype.update = function()
 	if (this.y > game.world.height - this.height - 10)
 	{
 		// fell off the screen 
-		LevelLoader.playerDied();
+		LevelLoader.playerDied(false);
 	}
 
 	this.movement();
@@ -103,7 +103,7 @@ Player.prototype.update = function()
 	game.physics.arcade.overlap(this.gun.bullets, _enemies, this.damageEnemy, null, this);
 	game.physics.arcade.overlap(this.meleeRect, _enemies, this.meleeDamage, null, this);
 	game.physics.arcade.collide(this, upgrades, this.upgrade, null, this);
-
+	game.physics.arcade.overlap(this, corpses, this.consumeCorpse, null, this);
 	
 
 }
@@ -336,6 +336,15 @@ Player.prototype.applyUpgrade = function(upgradeName)
 	}
 }
 
+Player.prototype.consumeCorpse = function(player, corpse)
+{
+	if (!corpse.corpseInfo.consumed)
+	{
+		corpse.setConsumed();
+		corpse.applyUpgradeToPlayer(this);
+	}
+}
+
 Player.prototype.pain = function(direction)
 {
 	if(!_player.immune){
@@ -362,5 +371,6 @@ Player.prototype.pain = function(direction)
 
 Player.prototype.kill = function()
 {
-	LevelLoader.playerDied();
+	Phaser.Sprite.prototype.kill.call(this);
+	LevelLoader.playerDied(true);
 }

@@ -10,6 +10,7 @@ var _player;
 var _enemies;
 var reverseWaypoints;
 var upgrades;
+var corpses;
 
 Play.prototype = {
 
@@ -19,6 +20,7 @@ Play.prototype = {
 		_enemies = game.add.group();
 		reverseWaypoints = game.add.group();
 		upgrades = game.add.group();
+		corpses = game.add.group();
 
 		LevelLoader.createMap(this);
 
@@ -44,6 +46,7 @@ Play.prototype = {
 		game.physics.arcade.collide(_enemies, this.mapLayer);
 		game.physics.arcade.overlap(_player, _enemies);
 		game.physics.arcade.collide(upgrades, this.mapLayer);
+		game.physics.arcade.collide(corpses, this.mapLayer);
 		//game.physics.arcade.collide(zombie, this.mapLayer);
 
 
