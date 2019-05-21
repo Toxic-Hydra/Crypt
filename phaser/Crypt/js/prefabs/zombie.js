@@ -126,15 +126,17 @@ Zombie.prototype.update = function()
 	this.stateMachine.step();
 }
 
-Zombie.prototype.zombieDamage = function()
+Zombie.prototype.zombieDamage = function(_player, bullet)
 {
 	_player.damage(this.playerDamage);
+	bullet.kill();
 	if(_player.x < this.x)
 	{
-		_player.pain(-1);
-	}
-	else if(this.x < _player)
-	{
 		_player.pain(1);
+	}
+	else if(this.x < _player.x)
+	{
+		
+		_player.pain(-1);
 	}
 }

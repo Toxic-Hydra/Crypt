@@ -71,6 +71,8 @@ var Player = function(game, x, y, key)
 	
 	this.loadPlayerData();
 
+
+
 	game.add.existing(this);
 }
 
@@ -256,7 +258,7 @@ Player.prototype.jump = function()
 
 	
     if(this.jumps > 0 && this.up.downDuration(150)) {
-        this.body.velocity.y = -400;
+        this.body.velocity.y = -300;
         this.jumping = true;
         //Jump particle effect needs to happen only once per press
         

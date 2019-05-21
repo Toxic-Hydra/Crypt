@@ -26,6 +26,14 @@ Play.prototype = {
 		_player = new Player(game, enterDoor.x, enterDoor.y - 5, 'character');
 		//zombie = new Zombie(game, game.world.centerX, game.world.centerY, 'tempEnemy');
 
+		//DAT.GUI PLAYER
+		var gui = new dat.GUI();
+		gui.add(_player, 'characterSpeed', 0, 500);
+		gui.add(_player, 'jumpAmount');
+		gui.add(_player, 'damageGun');
+		gui.add(_player, 'maxHealth');
+		gui.add(_player, 'health');
+
 		game.camera.flash('#000000', 1000);
 	},
 
