@@ -15,6 +15,7 @@ var Zombie = function(game, x, y, key)
 	});*/
 	this.enemyWeapon.trackSprite(this);
 	this.enemyWeapon.fireAngle = 0;
+	this.chaseRange = 30;
 
 	this.stateMachine = new StateMachine('patrol', {
 		//idle: new IdleState(),

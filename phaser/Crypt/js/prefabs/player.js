@@ -342,6 +342,14 @@ Player.prototype.applyUpgrade = function(upgradeName)
 	{
 		this.gun.fireRate *= 0.95; //decreases cooldown by 5 percent
 	}
+	if(upgradeName == "maxHealth");
+	{
+		this.maxHealth *= 1.05;
+	}
+	if(upgradeName == "heal")
+	{
+		this.heal(0.25 * this.maxHealth);
+	}
 }
 
 Player.prototype.consumeCorpse = function(player, corpse)

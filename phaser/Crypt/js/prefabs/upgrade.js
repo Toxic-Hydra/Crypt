@@ -37,3 +37,19 @@ var FireRate = function(game, x, y, key)
 }
 FireRate.prototype = Object.create(Upgrade.prototype)
 FireRate.prototype.constructor = FireRate;
+
+var MaxHealth = function(game, x, y, key)
+{
+	Upgrade.call(this, game, x, y, key);
+	this.upgradeName = "maxHealth";
+}
+MaxHealth.prototype = Object.create(Upgrade.prototype)
+MaxHealth.prototype.constructor = MaxHealth;
+
+var Heal = function(game, x, y, key)
+{
+	Upgrade.call(this, game, x, y, key);
+	this.upgradeName = "heal";
+}
+Heal.prototype = Object.create(Upgrade.prototype);
+Heal.prototype.constructor = Heal;

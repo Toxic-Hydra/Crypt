@@ -28,12 +28,12 @@ Play.prototype = {
 		//zombie = new Zombie(game, game.world.centerX, game.world.centerY, 'tempEnemy');
 
 		//DAT.GUI PLAYER
-		var gui = new dat.GUI();
+		/*var gui = new dat.GUI(); //Curently disabled as a new one is created every level transition and death. only use for testing
 		gui.add(_player, 'characterSpeed', 0, 500);
 		gui.add(_player, 'jumpAmount');
 		gui.add(_player, 'damageGun');
 		gui.add(_player, 'maxHealth');
-		gui.add(_player, 'health');
+		gui.add(_player, 'health');*/
 
 		game.camera.flash('#000000', 1000);
 	},
