@@ -34,6 +34,7 @@ Play.prototype = {
 		gui.add(_player, 'damageGun');
 		gui.add(_player, 'maxHealth');
 		gui.add(_player, 'health');*/
+		
 
 		game.camera.flash('#000000', 1000);
 	},
@@ -46,7 +47,7 @@ Play.prototype = {
 		game.physics.arcade.overlap(_player, _enemies);
 		game.physics.arcade.collide(upgrades, this.mapLayer);
 		game.physics.arcade.collide(corpses, this.mapLayer);
-		//game.physics.arcade.collide(zombie, this.mapLayer);
+		
 
 
 	},
@@ -54,6 +55,7 @@ Play.prototype = {
 	{
 		//game.debug.body(_player);
 		game.debug.body(_player.meleeRect);
+		game.debug.body(_player.meleeRectVert);
 		//game.debug.physicsGroup(_enemies);
 		//game.debug.physicsGroup(reverseWaypoints);
 		//game.debug.body(zombie);

@@ -18,6 +18,10 @@ PreLoad.prototype = {	//WE CAN ADD THE LOADING SCREEN HERE
 		game.load.image('waypoint', 'assets/img/pathcollider.png');
 		game.load.image('atkSpeedUp', 'assets/img/upatkspeed.png');
 		game.load.image('shotPower' , 'assets/img/shotpower.png');
+		game.load.image('extraJump' , 'assets/img/jumpup.png');
+		game.load.image('bulletspeed' , 'assets/img/bulletspeed.png');
+		game.load.image('maxhealth' , 'assets/img/maxhealth.png');
+		game.load.image('heal' , 'assets/img/heal.png');
 
 		game.load.image('enterDoor', 'assets/img/enterDoor.png');
 		game.load.image('exitDoor', 'assets/img/exitDoor.png');

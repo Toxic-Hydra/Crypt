@@ -13,6 +13,8 @@ var Enemy = function(game, x, y, key)
 	this.setHealth(100);
 	this.chaseRange = 60;
 	this.playerDamage = 10;	
+	this.dropChance = game.rnd.frac(0,1);
+
 
 	//Enemies should have a upgrade drop chance, 25 percent perhaps
 
@@ -164,11 +166,30 @@ class AttackState extends State {
 //knockback Enemy, called for sword attacks
 
 
-/*Enemy.prototype.kill = function() //we have the ability to override base functions, add animations and sounds for death here.
+Enemy.prototype.kill = function() //we have the ability to override base functions, add animations and sounds for death here.
 {
   this.alive = false;
     this.exists = false;
     this.visible = false;
+    console.log(this.dropChance);
+    
+
+    if(this.dropChance <= 0.30)
+    {
+		//spawn a random upgrade
+		//currently 6 upgrades
+		var randomUp = game.rnd.integerInRange(1,6);
+		//upgrades.add.Upgrade(game, this.x, this.y, 'atkSpeedUp');
+		if(randomUp == 1) var Up = new Upgrade(game, this.x, this.y, 'atkSpeedUp');
+		if(randomUp == 2) var Up = new ShotUpgrade(game, this.x, this.y, 'shotPower');
+		if(randomUp == 3) var Up = new JumpUpgrade(game, this.x, this.y, 'extraJump');
+		if(randomUp == 4) var Up = new FireRate(game, this.x, this.y, 'bulletspeed');
+		if(randomUp == 5) var Up = new MaxHealth(game, this.x, this.y, 'maxhealth');
+		if(randomUp == 6) var Up = new Heal(game, this.x, this.y, 'heal');
+
+
+		upgrades.add(Up);
+    }
 
     if (this.events)
     {
@@ -176,4 +197,4 @@ class AttackState extends State {
     }
 
     return this;
-}*/
+}

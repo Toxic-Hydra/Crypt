@@ -3,6 +3,33 @@
  <tileset firstgid="1" name="colored" tilewidth="16" tileheight="16" spacing="1" tilecount="1024" columns="32">
   <image source="../img/tiles/colored_transparent.png" width="543" height="543"/>
  </tileset>
+ <tileset firstgid="1025" name="Objects" tilewidth="32" tileheight="32" tilecount="8" columns="0">
+  <grid orientation="orthogonal" width="1" height="1"/>
+  <tile id="0">
+   <image width="24" height="24" source="../img/enterDoor.png"/>
+  </tile>
+  <tile id="1">
+   <image width="24" height="24" source="../img/exitDoor.png"/>
+  </tile>
+  <tile id="2">
+   <image width="32" height="32" source="../img/pathcollider.png"/>
+  </tile>
+  <tile id="3">
+   <image width="32" height="32" source="../img/placeholderEnemy.png"/>
+  </tile>
+  <tile id="4">
+   <image width="16" height="16" source="../img/shotpower.png"/>
+  </tile>
+  <tile id="5">
+   <image width="32" height="32" source="../img/spike.png"/>
+  </tile>
+  <tile id="6">
+   <image width="16" height="16" source="../img/upatkspeed.png"/>
+  </tile>
+  <tile id="7">
+   <image width="32" height="32" source="../img/zombie.png"/>
+  </tile>
+ </tileset>
  <layer id="1" name="Tile Layer 1" width="50" height="40">
   <data encoding="csv">
 513,514,514,514,514,514,514,514,514,514,514,514,514,514,514,514,514,514,514,514,514,514,514,514,514,514,514,514,514,514,514,514,514,514,514,514,514,514,514,514,514,514,514,514,514,514,514,514,514,515,

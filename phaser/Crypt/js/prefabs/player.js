@@ -45,12 +45,16 @@ var Player = function(game, x, y, key)
 	*/
 	this.canAttack = true;
 	this.meleeRect = game.add.sprite(0,0, null);
+	this.meleeRectVert = game.add.sprite(0,0, null);
 	//this.addChild(this.meleeRect);
 	game.physics.arcade.enableBody(this.meleeRect);
+	game.physics.arcade.enableBody(this.meleeRectVert);
 	//SetSize(width, height, <offsetX>, <offsetY>)
 	this.meleeRect.body.setSize(50,10, 0, -5);
+	this.meleeRectVert.body.setSize(10, -50, 0, -5);
 	this.meleeRect.kill();
-	this.meleeAttackRate = 500;
+	this.meleeRectVert.kill();
+	this.meleeAttackRate = 250;
 	this.meleeTime = game.time.create(false);
 	this.meleeTime.loop(this.meleeAttackRate, this.meleeAttackFlag, this);
 	this.meleeTime.start();
@@ -103,7 +107,8 @@ Player.prototype.update = function()
 	this.jump();
 	this.shooting(this.weaponState);
 	game.physics.arcade.overlap(this.gun.bullets, _enemies, this.damageEnemy, null, this);
-	game.physics.arcade.overlap(this.meleeRect, _enemies, this.meleeDamage, null, this);
+	game.physics.arcade.collide(this.meleeRect, _enemies, this.meleeDamage, null, this);
+	game.physics.arcade.overlap(this.meleeRectVert, _enemies, this.meleeDamage, null, this);
 	game.physics.arcade.collide(this, upgrades, this.upgrade, null, this);
 	game.physics.arcade.overlap(this, corpses, this.consumeCorpse, null, this);
 	
@@ -215,30 +220,29 @@ Player.prototype.shooting = function(state)
 		}
 
 	}
-	else if(state === "melee"){
+	else if(state === "melee"){//Currently only right attack deals damage.
 		if(this.shootDirectionright.isDown && this.canAttack)
 		{
 			//TIMER LOGIC
 			//Timer prevents killed hitbox to respawn instantly.
-			this.meleeRect.body.setSize(50, 10, 0, -5);
-			this.meleeRect.angle = 0;
+			//this.meleeRect.body.setSize(50, 10, 0, -5);
+			
 			this.meleeRect.reset(this.x, this.y);
 			this.canAttack = false;
 			this.meleeTime.resume();
 		}
 		else if(this.shootDirectionup.isDown && this.canAttack)
 		{//SetSize(width, height, <offsetX>, <offsetY>) //50, 10 og
-			this.meleeRect.body.setSize(10, -50, 0, -5);
-			this.meleeRect.reset(this.x, this.y);
-			this.meleeRect.angle = 90;
+			
+			this.meleeRectVert.reset(this.x, this.y);
+		
 			this.canAttack = false;
 			this.meleeTime.resume();
 		}
 		else if(this.shootDirectionleft.isDown && this.canAttack)
 		{
-			this.meleeRect.body.setSize(-50, 10, 0, -5);
-			this.meleeRect.reset(this.x, this.y);
-			this.meleeRect.angle = 90;
+			//this.meleeRect.body.setSize(-50, 10, 0, -5);
+			this.meleeRect.reset(this.x - this.meleeRect.width*2, this.y);
 			this.canAttack = false;
 			this.meleeTime.resume();
 		}
@@ -246,7 +250,7 @@ Player.prototype.shooting = function(state)
 		{
 			this.meleeRect.body.setSize(10, 50, 0, -5);
 			this.meleeRect.reset(this.x, this.y);
-			this.meleeRect.angle = 90;
+			
 			this.canAttack = false;
 			this.meleeTime.resume();
 		}
@@ -256,6 +260,10 @@ Player.prototype.shooting = function(state)
 			if(this.meleeRect.alive)
 			{
 				this.meleeRect.kill();
+			}
+			if(this.meleeRectVert.alive)
+			{
+				this.meleeRectVert.kill();
 			}
 		}
 	}
@@ -317,7 +325,22 @@ Player.prototype.meleeDamage = function(sword, enemy)
 {
 	
 	sword.kill();
-	enemy.damage(50);
+	//console.log(25 + (0.25*this.damageGun));
+	enemy.damage(25 + (0.25 * this.damageGun));
+	enemy.stateMachine.transition('pain');
+	if(enemy.x < this.x)
+	{
+		//launch enemy left
+		enemy.body.velocity.x = -150;
+		enemy.body.velocity.y = -200;
+	}
+	else if(enemy.x > this.x)
+	{
+		//launch right
+		enemy.body.velocity.x = 150;
+		enemy.body.velocity.y = -200;
+	}
+	
 
 	
 }
