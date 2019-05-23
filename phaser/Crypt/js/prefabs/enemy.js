@@ -14,7 +14,7 @@ var Enemy = function(game, x, y, key)
 	this.chaseRange = 60;
 	this.playerDamage = 10;	
 
-	//Enemies should have a upgrade drop chance
+	//Enemies should have a upgrade drop chance, 25 percent perhaps
 
 	//Enemy States
 	//Enemy states include: Standing, Attack, Path, Pain, Shoot, Chase, Die, Special.
@@ -160,6 +160,8 @@ class AttackState extends State {
 		enemy.stateMachine.transition('patrol');
 	}
 }
+
+//knockback Enemy, called for sword attacks
 
 
 /*Enemy.prototype.kill = function() //we have the ability to override base functions, add animations and sounds for death here.

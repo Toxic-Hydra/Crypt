@@ -53,7 +53,7 @@ Play.prototype = {
 	render: function()
 	{
 		//game.debug.body(_player);
-		//game.debug.body(_player.meleeRect);
+		game.debug.body(_player.meleeRect);
 		//game.debug.physicsGroup(_enemies);
 		//game.debug.physicsGroup(reverseWaypoints);
 		//game.debug.body(zombie);

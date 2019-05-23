@@ -57,12 +57,14 @@ var Player = function(game, x, y, key)
 
 
 	//Movement Keys
-	this.moveLeft = game.input.keyboard.addKey(Phaser.Keyboard.D);
-	this.moveRight = game.input.keyboard.addKey(Phaser.Keyboard.A);
-	this.up = game.input.keyboard.addKey(Phaser.Keyboard.W);
-	this.down = game.input.keyboard.addKey(Phaser.Keyboard.S);
+	this.moveLeft = game.input.keyboard.addKey(Phaser.Keyboard.RIGHT);
+	this.moveRight = game.input.keyboard.addKey(Phaser.Keyboard.LEFT);
+	this.up = game.input.keyboard.addKey(Phaser.Keyboard.UP);
+	this.down = game.input.keyboard.addKey(Phaser.Keyboard.DOWN);
 	//Attack Keys
-	this.shootDirection = game.input.keyboard.createCursorKeys();
+	this.shootDirectionleft = game.input.keyboard.addKey(Phaser.Keyboard.Z);// = game.input.keyboard.createCursorKeys();
+	this.shootDirectionright = game.input.keyboard.addKey(Phaser.Keyboard.C);
+	this.shootDirectionup = game.input.keyboard.addKey(Phaser.Keyboard.X);
 	//Change weapon
 	this.weaponChange = game.input.keyboard.addKey(Phaser.Keyboard.R);
 	//Pain state immune
@@ -149,32 +151,28 @@ Player.prototype.shooting = function(state)
 
 	if(state === "gun"){
 		if(this.currentgun == "gun"){
-			if(this.shootDirection.right.isDown)
+			if(this.shootDirectionright.isDown)
 			{
 
 				this.gun.fireAngle = Phaser.ANGLE_RIGHT;
 				this.gun.fireOffset(16,-4);
 			}
-			else if(this.shootDirection.up.isDown)
+			else if(this.shootDirectionup.isDown)
 			{
 				this.gun.fireAngle = Phaser.ANGLE_UP;
 				this.gun.fireOffset(16,-4);//Need to set these offsets according to the sprite animations
 			}
-			else if(this.shootDirection.left.isDown)
+			else if(this.shootDirectionleft.isDown)
 			{
 				this.gun.fireAngle = Phaser.ANGLE_LEFT;
 				this.gun.fireOffset(16,-4);
 			}
-			else if(this.shootDirection.down.isDown)
-			{
-				this.gun.fireAngle = Phaser.ANGLE_DOWN;
-				this.gun.fireOffset(16,-4);
-			}
+			
 		}
 		else if(this.currentgun == "shotgun")
 		{
 
-			if(this.shootDirection.right.isDown)
+			if(this.shootDirectionright.isDown)
 			{
 
 				this.gun.fireAngle = Phaser.ANGLE_RIGHT;
@@ -184,7 +182,7 @@ Player.prototype.shooting = function(state)
 				this.gun.fireOffset(16,-4);
 				this.gun.fireOffset(16,-4);
 			}
-			else if(this.shootDirection.up.isDown)
+			else if(this.shootDirectionup.isDown)
 			{
 				this.gun.fireAngle = Phaser.ANGLE_UP;
 				this.gun.fireOffset(16,-4);//Need to set these offsets according to the sprite animations
@@ -194,7 +192,7 @@ Player.prototype.shooting = function(state)
 				this.gun.fireOffset(16,-4);
 				this.gun.fireOffset(16,-4);
 			}
-			else if(this.shootDirection.left.isDown)
+			else if(this.shootDirectionleft.isDown)
 			{
 				this.gun.fireAngle = Phaser.ANGLE_LEFT;
 				this.gun.fireOffset(16,-4);
@@ -204,7 +202,7 @@ Player.prototype.shooting = function(state)
 				this.gun.fireOffset(16,-4);
 				this.gun.fireOffset(16,-4);
 			}
-			else if(this.shootDirection.down.isDown)
+			/*else if(this.shootDirection.down.isDown)
 			{
 				this.gun.fireAngle = Phaser.ANGLE_DOWN;
 				this.gun.fireOffset(16,-4);
@@ -213,19 +211,46 @@ Player.prototype.shooting = function(state)
 				this.gun.fireOffset(16,-4);
 				this.gun.fireOffset(16,-4);
 				this.gun.fireOffset(16,-4);
-			}
+			}*/
 		}
 
 	}
 	else if(state === "melee"){
-		if(this.shootDirection.right.isDown && this.canAttack)
+		if(this.shootDirectionright.isDown && this.canAttack)
 		{
 			//TIMER LOGIC
 			//Timer prevents killed hitbox to respawn instantly.
+			this.meleeRect.body.setSize(50, 10, 0, -5);
+			this.meleeRect.angle = 0;
 			this.meleeRect.reset(this.x, this.y);
 			this.canAttack = false;
 			this.meleeTime.resume();
 		}
+		else if(this.shootDirectionup.isDown && this.canAttack)
+		{//SetSize(width, height, <offsetX>, <offsetY>) //50, 10 og
+			this.meleeRect.body.setSize(10, -50, 0, -5);
+			this.meleeRect.reset(this.x, this.y);
+			this.meleeRect.angle = 90;
+			this.canAttack = false;
+			this.meleeTime.resume();
+		}
+		else if(this.shootDirectionleft.isDown && this.canAttack)
+		{
+			this.meleeRect.body.setSize(-50, 10, 0, -5);
+			this.meleeRect.reset(this.x, this.y);
+			this.meleeRect.angle = 90;
+			this.canAttack = false;
+			this.meleeTime.resume();
+		}
+		else if(this.down.isDown && this.canAttack)
+		{
+			this.meleeRect.body.setSize(10, 50, 0, -5);
+			this.meleeRect.reset(this.x, this.y);
+			this.meleeRect.angle = 90;
+			this.canAttack = false;
+			this.meleeTime.resume();
+		}
+
 		else
 		{
 			if(this.meleeRect.alive)
@@ -319,7 +344,7 @@ Player.prototype.applyUpgrade = function(upgradeName)
 	{
 		//Pretty much the method to use
 		//just compare the name and apply the upgrade.
-		this.damageGun *=1.05;//increases damage by 5 percent
+		this.damageGun *=1.5;//increases damage by 50 percent doesnt work right
 		console.log("player damage: " + this.damageGun);
 		
 	}
@@ -344,7 +369,8 @@ Player.prototype.applyUpgrade = function(upgradeName)
 	}
 	if(upgradeName == "maxHealth");
 	{
-		this.maxHealth *= 1.05;
+		this.maxHealth += 10;
+		this.heal(10);
 	}
 	if(upgradeName == "heal")
 	{
