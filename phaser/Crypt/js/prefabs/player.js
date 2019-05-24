@@ -367,7 +367,7 @@ Player.prototype.applyUpgrade = function(upgradeName)
 	{
 		//Pretty much the method to use
 		//just compare the name and apply the upgrade.
-		this.damageGun *=1.5;//increases damage by 50 percent doesnt work right
+		this.damageGun +=0.15 * this.damageGun;
 		console.log("player damage: " + this.damageGun);
 		
 	}
