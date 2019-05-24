@@ -44,11 +44,13 @@ LevelLoader.createMap = function(playState)
 
     map.createFromObjects('enemies', 218, 'tempEnemy', 0, true, false, _enemies, Enemy);
     map.createFromObjects('enemies', 57, 'tempEnemy', 0, true, false, _enemies, Zombie);
+    map.createFromObjects('enemies', 313, 'tempEnemy', 0, true, false, _enemies, Pursuer);
     map.createFromObjects('reverse', 442, 'waypoint', 0, true, false, reverseWaypoints, WayPoint );
     map.createFromObjects('upgrades', 1, 'atkSpeedUp', 0, true, false, upgrades, Upgrade);
     map.createFromObjects('upgrades', 1000, 'shotPower', 0, true, false, upgrades, ShotUpgrade);
     map.createFromObjects('doors', 290, 'enterDoor', 0, true, false, playState.doors);
     map.createFromObjects('doors', 291, 'exitDoor', 0, true, false, playState.doors, Door);
+    map.createFromObjects('traps', 23, 'spike', 0, true, false, traps, Spikes);
 
     LevelLoader.loadCorpses();
 }

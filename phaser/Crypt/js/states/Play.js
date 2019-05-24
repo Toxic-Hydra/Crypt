@@ -10,6 +10,7 @@ var _enemies;
 var reverseWaypoints;
 var upgrades;
 var corpses;
+var traps;
 
 Play.prototype = {
 
@@ -20,6 +21,7 @@ Play.prototype = {
 		reverseWaypoints = game.add.group();
 		upgrades = game.add.group();
 		corpses = game.add.group();
+		traps = game.add.group();
 
 		LevelLoader.createMap(this);
 

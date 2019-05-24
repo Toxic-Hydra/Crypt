@@ -51,7 +51,19 @@
          "draworder":"topdown",
          "id":2,
          "name":"enemies",
-         "objects":[],
+         "objects":[
+                {
+                 "gid":313,
+                 "height":32,
+                 "id":17,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":640,
+                 "y":384
+                }],
          "opacity":1,
          "type":"objectgroup",
          "visible":true,
@@ -106,7 +118,7 @@
          "y":0
         }],
  "nextlayerid":6,
- "nextobjectid":17,
+ "nextobjectid":18,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.2.3",

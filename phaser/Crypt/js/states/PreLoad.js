@@ -13,6 +13,7 @@ PreLoad.prototype = {	//WE CAN ADD THE LOADING SCREEN HERE
 		game.load.atlas('character', 'assets/img/atlas/character.png', 'assets/img/atlas/character.json');
 		game.load.image('corpse', 'assets/img/corpse.png');
 		game.load.image('bullet', 'assets/img/bullet.png');
+		game.load.image('spike', 'assets/img/spike.png');
 		game.load.image('colored_transparent' , 'assets/img/tiles/colored_transparent.png');
 		game.load.image('tempEnemy' , 'assets/img/placeholderEnemy.png');
 		game.load.image('waypoint', 'assets/img/pathcollider.png');

@@ -1,10 +1,11 @@
-var Pursuer = function(game, x, ,y, key)
+var Pursuer = function(game, x, y, key)
 {
 	Enemy.call(this, game, x, y, key);
+	this.chaseRange = 150;
 
 	this.stateMachine = new StateMachine('patrol', {
 		//idle: new IdleState(),
-		patrol: new PursuePatrolState(),
+		patrol: new PatrolState(),
 		chase: new PursueChaseState(),
 		attack: new AttackState(),
 		pain: new PainState(),
