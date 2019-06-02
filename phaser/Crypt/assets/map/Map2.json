@@ -40,7 +40,79 @@
          "draworder":"topdown",
          "id":3,
          "name":"reverse",
-         "objects":[],
+         "objects":[
+                {
+                 "gid":1037,
+                 "height":32,
+                 "id":20,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":768,
+                 "y":384
+                }, 
+                {
+                 "gid":1037,
+                 "height":32,
+                 "id":21,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":352,
+                 "y":384
+                }, 
+                {
+                 "gid":1037,
+                 "height":32,
+                 "id":22,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":368,
+                 "y":256
+                }, 
+                {
+                 "gid":1037,
+                 "height":32,
+                 "id":23,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":128,
+                 "y":256
+                }, 
+                {
+                 "gid":1037,
+                 "height":32,
+                 "id":24,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":400,
+                 "y":112
+                }, 
+                {
+                 "gid":1037,
+                 "height":32,
+                 "id":25,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":608,
+                 "y":112
+                }],
          "opacity":1,
          "type":"objectgroup",
          "visible":true,
@@ -53,16 +125,16 @@
          "name":"enemies",
          "objects":[
                 {
-                 "gid":313,
-                 "height":32,
-                 "id":17,
+                 "gid":1033,
+                 "height":21,
+                 "id":19,
                  "name":"",
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":32,
+                 "width":31,
                  "x":640,
-                 "y":384
+                 "y":368
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -118,7 +190,7 @@
          "y":0
         }],
  "nextlayerid":6,
- "nextobjectid":18,
+ "nextobjectid":26,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.2.3",
@@ -136,6 +208,89 @@
          "tilecount":1024,
          "tileheight":16,
          "tilewidth":16
+        }, 
+        {
+         "columns":0,
+         "firstgid":1025,
+         "grid":
+            {
+             "height":1,
+             "orientation":"orthogonal",
+             "width":1
+            },
+         "margin":0,
+         "name":"objects",
+         "spacing":0,
+         "tilecount":11,
+         "tileheight":47,
+         "tiles":[
+                {
+                 "id":0,
+                 "image":"..\/img\/bulletspeed.png",
+                 "imageheight":32,
+                 "imagewidth":19
+                }, 
+                {
+                 "id":1,
+                 "image":"..\/img\/heal.png",
+                 "imageheight":32,
+                 "imagewidth":32
+                }, 
+                {
+                 "id":2,
+                 "image":"..\/img\/jumpup.png",
+                 "imageheight":28,
+                 "imagewidth":34
+                }, 
+                {
+                 "id":3,
+                 "image":"..\/img\/maxhealth.png",
+                 "imageheight":30,
+                 "imagewidth":31
+                }, 
+                {
+                 "id":4,
+                 "image":"..\/img\/upatkspeed.png",
+                 "imageheight":32,
+                 "imagewidth":19
+                }, 
+                {
+                 "id":8,
+                 "image":"..\/img\/atlas\/mapbat.png",
+                 "imageheight":21,
+                 "imagewidth":31
+                }, 
+                {
+                 "id":9,
+                 "image":"..\/img\/atlas\/mapbig.png",
+                 "imageheight":47,
+                 "imagewidth":22
+                }, 
+                {
+                 "id":10,
+                 "image":"..\/img\/atlas\/mapsmall.png",
+                 "imageheight":40,
+                 "imagewidth":24
+                }, 
+                {
+                 "id":11,
+                 "image":"..\/img\/shotpower.png",
+                 "imageheight":16,
+                 "imagewidth":16
+                }, 
+                {
+                 "id":12,
+                 "image":"..\/img\/atlas\/mapcollider.png",
+                 "imageheight":32,
+                 "imagewidth":16
+                }, 
+                {
+                 "id":13,
+                 "image":"..\/img\/spike.png",
+                 "imageheight":32,
+                 "imagewidth":32
+                }],
+         "tilewidth":34
         }],
  "tilewidth":16,
  "type":"map",

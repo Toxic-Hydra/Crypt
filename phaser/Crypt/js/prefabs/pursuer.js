@@ -3,6 +3,9 @@ var Pursuer = function(game, x, y, key)
 	Enemy.call(this, game, x, y, key);
 	this.chaseRange = 150;
 
+	this.animations.add('left', Phaser.Animation.generateFrameNames('sprite', 1, 3), 3, true);
+	this.animations.add('right', Phaser.Animation.generateFrameNames('sprite', 1, 3), 3, true);
+
 	this.stateMachine = new StateMachine('patrol', {
 		//idle: new IdleState(),
 		patrol: new PatrolState(),

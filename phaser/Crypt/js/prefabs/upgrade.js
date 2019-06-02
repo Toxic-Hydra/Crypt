@@ -1,6 +1,7 @@
 var Upgrade = function(game, x, y, key)
 {
 	Phaser.Sprite.call(this, game, x, y, key);
+	this.scale.setTo(0.5);
 
 	game.physics.arcade.enable(this);
 
@@ -17,6 +18,7 @@ Upgrade.prototype.constructor = Upgrade;
 var ShotUpgrade = function(game, x, y, key)
 {
 	Upgrade.call(this, game, x, y, key);
+	this.scale.setTo(1);
 	this.upgradeName = "shotgun";
 }
 ShotUpgrade.prototype = Object.create(Upgrade.prototype);

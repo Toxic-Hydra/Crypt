@@ -16,7 +16,7 @@ var gameData = {
 
 var game = new Phaser.Game(1024, 768, Phaser.AUTO, '');//800 x 600
 
-//game.state.add("Main", MainMenu);
+game.state.add("Main", MainMenu);
 game.state.add("preload", PreLoad);
 game.state.add("newLife", NewLife);
 game.state.add("play", Play);

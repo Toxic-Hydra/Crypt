@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.3" orientation="orthogonal" renderorder="right-down" width="50" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="18">
+<map version="1.2" tiledversion="1.2.3" orientation="orthogonal" renderorder="right-down" width="50" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="26">
  <tileset firstgid="1" name="colored" tilewidth="16" tileheight="16" spacing="1" tilecount="1024" columns="32">
   <image source="../img/tiles/colored_transparent.png" width="543" height="543"/>
  </tileset>
+ <tileset firstgid="1025" source="objects.tsx"/>
  <layer id="1" name="Tile Layer 1" width="50" height="40">
   <data encoding="csv">
 513,514,514,514,514,514,514,514,514,514,514,514,514,514,514,514,514,514,514,514,514,514,514,514,514,514,514,514,514,514,514,514,514,514,514,514,514,514,514,514,514,514,514,514,514,514,514,514,514,515,
@@ -50,9 +51,16 @@
  <objectgroup id="5" name="upgrades">
   <object id="16" gid="1" x="616" y="378" width="16" height="16"/>
  </objectgroup>
- <objectgroup id="3" name="reverse"/>
+ <objectgroup id="3" name="reverse">
+  <object id="20" gid="1037" x="768" y="384" width="16" height="32"/>
+  <object id="21" gid="1037" x="352" y="384" width="16" height="32"/>
+  <object id="22" gid="1037" x="368" y="256" width="16" height="32"/>
+  <object id="23" gid="1037" x="128" y="256" width="16" height="32"/>
+  <object id="24" gid="1037" x="400" y="112" width="16" height="32"/>
+  <object id="25" gid="1037" x="608" y="112" width="16" height="32"/>
+ </objectgroup>
  <objectgroup id="2" name="enemies">
-  <object id="17" gid="313" x="640" y="384" width="32" height="32"/>
+  <object id="19" gid="1033" x="640" y="368" width="31" height="21"/>
  </objectgroup>
  <objectgroup id="4" name="doors">
   <object id="14" gid="290" x="37" y="385" width="24" height="24">

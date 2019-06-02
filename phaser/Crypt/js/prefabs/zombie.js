@@ -3,7 +3,6 @@
 var Zombie = function(game, x, y, key)
 {
 	Enemy.call(this, game, x, y, key);
-	this.tint = Phaser.Color.RED;
 
 	this.enemyWeapon = game.add.weapon(6, 'bullet');
 	this.canShoot = true;
@@ -16,6 +15,9 @@ var Zombie = function(game, x, y, key)
 	this.enemyWeapon.trackSprite(this);
 	this.enemyWeapon.fireAngle = 0;
 	this.chaseRange = 30;
+
+	this.animations.add('left', Phaser.Animation.generateFrameNames('left', 1, 6), 6, true);
+	this.animations.add('right', Phaser.Animation.generateFrameNames('right', 1, 6), 6, true);
 
 	this.stateMachine = new StateMachine('patrol', {
 		//idle: new IdleState(),
@@ -36,6 +38,7 @@ class ZombiePatrolState extends State
 	enter(scene, enemy)
 	{
 		//enemy.patrol();
+		enemy.animations.play('right');
 		
 	}
 
@@ -62,6 +65,7 @@ class ShootState extends State
 	enter(game, enemy)
 	{
 		//cannot move while shooting
+		enemy.animations.stop();
 	}
 
 	execute(game, enemy)
@@ -69,7 +73,7 @@ class ShootState extends State
 		//Will fire if zombie and player are on same platform.
 		if(enemy.bottom != _player.bottom)
 		{
-			enemy.stateMachine.transition('patrol');
+			enemy.stateMachine.transition('chase');
 		}
 
 		enemy.body.velocity.x = 0;
@@ -77,8 +81,10 @@ class ShootState extends State
 		if(enemy.canShoot){
 			if(enemy.x < _player.x)
 			{
+
 				if(enemy.enemySpeed <=0)
 				{
+					enemy.animations.play('right');
 					enemy.enemySpeed *=-1;
 				}
 				
@@ -89,6 +95,7 @@ class ShootState extends State
 			{
 				if(enemy.enemySpeed >= 0)
 				{
+					enemy.animations.play('left');
 					enemy.enemySpeed *= -1;
 				}
 				

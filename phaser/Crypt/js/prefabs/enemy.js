@@ -3,6 +3,7 @@
 var Enemy = function(game, x, y, key)
 {
 	Phaser.Sprite.call(this, game, x, y, key);
+	this.smoothed = false;
 	//Arcade
 	game.physics.arcade.enableBody(this);
 	this.anchor.setTo(0.5);
@@ -33,6 +34,10 @@ var Enemy = function(game, x, y, key)
 		//shooting: new ShootState(),
 	}, [game, this ]);
 
+	//ANIMATIONS
+	this.animations.add('left', Phaser.Animation.generateFrameNames('left', 1, 3), 5, true);
+	this.animations.add('right', Phaser.Animation.generateFrameNames('right', 1, 3), 5, true);
+
 	game.add.existing(this);
 }
 
@@ -49,8 +54,14 @@ Enemy.prototype.patrol = function(enemy, waypoint) //Pass in Platform group duri
 	
 	if(waypoint.effect == "reverse")
 	{
-		if(enemy.body.touching.left || enemy.body.touching.right)
+		if(enemy.body.touching.left)
 		{
+			enemy.animations.play('right');
+			enemy.enemySpeed *= -1;
+		}
+		else if(enemy.body.touching.right)
+		{
+			enemy.animations.play('left');
 			enemy.enemySpeed *= -1;
 		}
 		
@@ -63,6 +74,7 @@ class PatrolState extends State
 	enter(scene, enemy)
 	{
 		//enemy.patrol();
+		enemy.animations.play('right');
 		
 	}
 
@@ -106,10 +118,12 @@ Enemy.prototype.chase = function(enemy)
 	
 	if(_player.x < enemy.x && enemy.body.velocity.x >= 0)
 	{
+		this.animations.play('right');
 		enemy.enemySpeed *= -1;
 	}
 	else if(_player.x > enemy.x && enemy.body.velocity.x <=0)
 	{
+		this.animations.play('left');
 		enemy.enemySpeed *=-1;
 	}
 }

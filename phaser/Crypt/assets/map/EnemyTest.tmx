@@ -1,35 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.3" orientation="orthogonal" renderorder="right-down" width="50" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="68">
+<map version="1.2" tiledversion="1.2.3" orientation="orthogonal" renderorder="right-down" width="50" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="92">
  <tileset firstgid="1" name="colored" tilewidth="16" tileheight="16" spacing="1" tilecount="1024" columns="32">
   <image source="../img/tiles/colored_transparent.png" width="543" height="543"/>
  </tileset>
- <tileset firstgid="1025" name="Objects" tilewidth="32" tileheight="32" tilecount="8" columns="0">
-  <grid orientation="orthogonal" width="1" height="1"/>
-  <tile id="0">
-   <image width="24" height="24" source="../img/enterDoor.png"/>
-  </tile>
-  <tile id="1">
-   <image width="24" height="24" source="../img/exitDoor.png"/>
-  </tile>
-  <tile id="2">
-   <image width="32" height="32" source="../img/pathcollider.png"/>
-  </tile>
-  <tile id="3">
-   <image width="32" height="32" source="../img/placeholderEnemy.png"/>
-  </tile>
-  <tile id="4">
-   <image width="16" height="16" source="../img/shotpower.png"/>
-  </tile>
-  <tile id="5">
-   <image width="32" height="32" source="../img/spike.png"/>
-  </tile>
-  <tile id="6">
-   <image width="16" height="16" source="../img/upatkspeed.png"/>
-  </tile>
-  <tile id="7">
-   <image width="32" height="32" source="../img/zombie.png"/>
-  </tile>
- </tileset>
+ <tileset firstgid="1025" source="objects.tsx"/>
  <layer id="1" name="Tile Layer 1" width="50" height="40">
   <data encoding="csv">
 513,514,514,514,514,514,514,514,514,514,514,514,514,514,514,514,514,514,514,514,514,514,514,514,514,514,514,514,514,514,514,514,514,514,514,514,514,514,514,514,514,514,514,514,514,514,514,514,514,515,
@@ -76,23 +50,25 @@
  </layer>
  <objectgroup id="5" name="upgrades">
   <object id="17" gid="1" x="212" y="459" width="16" height="16"/>
+  <object id="75" gid="1029" x="272" y="448" width="19" height="32"/>
  </objectgroup>
  <objectgroup id="3" name="reverse">
-  <object id="7" gid="442" x="665" y="464" width="16" height="16"/>
-  <object id="8" gid="442" x="74" y="463" width="16" height="16"/>
-  <object id="9" gid="442" x="89" y="318" width="16" height="16"/>
-  <object id="10" gid="442" x="25" y="319" width="16" height="16"/>
-  <object id="11" gid="442" x="153" y="158" width="16" height="16"/>
-  <object id="12" gid="442" x="25" y="158" width="16" height="16"/>
+  <object id="84" gid="1037" x="528" y="336" width="16" height="32"/>
+  <object id="85" gid="1037" x="400" y="336" width="16" height="32"/>
+  <object id="86" gid="1037" x="96" y="320" width="16" height="32"/>
+  <object id="87" gid="1037" x="16" y="320" width="16" height="32"/>
+  <object id="88" gid="1037" x="16" y="160" width="16" height="32"/>
+  <object id="89" gid="1037" x="160" y="160" width="16" height="32"/>
+  <object id="90" gid="1037" x="80" y="464" width="16" height="32"/>
+  <object id="91" gid="1037" x="656" y="464" width="16" height="32"/>
  </objectgroup>
  <objectgroup id="2" name="enemies">
-  <object id="1" gid="218" x="47" y="312" width="16" height="16"/>
-  <object id="2" gid="218" x="56" y="144" width="16" height="16"/>
-  <object id="3" gid="218" x="361" y="433" width="16" height="16"/>
-  <object id="4" gid="218" x="455" y="431" width="16" height="16"/>
-  <object id="5" gid="218" x="539" y="433" width="16" height="16"/>
-  <object id="6" gid="218" x="616" y="431" width="16" height="16"/>
-  <object id="18" gid="57" x="432" y="325" width="32" height="32"/>
+  <object id="68" gid="1034" x="464" y="320" width="22" height="47"/>
+  <object id="69" gid="1035" x="576" y="448" width="24" height="40"/>
+  <object id="70" gid="1035" x="512" y="448" width="24" height="40"/>
+  <object id="71" gid="1035" x="448" y="448" width="24" height="40"/>
+  <object id="72" gid="1035" x="64" y="320" width="24" height="40"/>
+  <object id="73" gid="1035" x="112" y="160" width="24" height="40"/>
  </objectgroup>
  <objectgroup id="4" name="doors">
   <object id="14" gid="290" x="159" y="466" width="24" height="24">
