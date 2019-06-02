@@ -39,8 +39,11 @@ LevelLoader.createMap = function(playState)
     var map = game.add.tilemap(gameData.roomName);
     map.addTilesetImage('colored', 'colored_transparent');
     map.addTilesetImage('Dungeon' , 'dungeon');
-    map.setCollisionByExclusion([47,48,49,57,58,59,68,69,78,79]);
+    map.setCollisionByExclusion([47,48,49,57,58,59,68,69,78,79], true, 'Tile Layer 1');
     //map.setCollisionBetween(1, 1023);
+    //playState.mapLayer = map.createLayer('background');
+    var back = map.createLayer('background');
+    game.world.sendToBack(back);
     playState.mapLayer = map.createLayer('Tile Layer 1');
     playState.mapLayer.resizeWorld();
 

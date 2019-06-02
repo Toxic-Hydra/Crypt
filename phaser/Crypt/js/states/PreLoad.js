@@ -18,6 +18,7 @@ PreLoad.prototype = {	//WE CAN ADD THE LOADING SCREEN HERE
 		game.load.atlas('Menu', 'assets/img/atlas/MainMenu.png' , 'assets/img/atlas/MainMenu.json')
 		game.load.image('colored_transparent' , 'assets/img/tiles/colored_transparent.png');
 		game.load.image('dungeon' , 'assets/img/tiles/DungeonTileset.png');
+		
 
 		game.load.image('enterDoor', 'assets/img/enterDoor.png');
 		game.load.image('exitDoor', 'assets/img/exitDoor.png');
@@ -33,6 +34,11 @@ PreLoad.prototype = {	//WE CAN ADD THE LOADING SCREEN HERE
 	},
 	create: function()
 	{
+		
+		
 		game.state.start("Main");//newLife
+
+
+		
 	}
 }
