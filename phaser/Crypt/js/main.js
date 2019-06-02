@@ -9,6 +9,7 @@ var gameData = {
     roomName: "",
     player: {
         // put other data needed to create the player (appearance info) here
+        health: 100,
         upgrades: [ ]
     },
     corpses: [ ]

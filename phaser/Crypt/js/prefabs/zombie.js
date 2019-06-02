@@ -137,6 +137,7 @@ Zombie.prototype.update = function()
 Zombie.prototype.zombieDamage = function(_player, bullet)
 {
 	_player.damage(this.playerDamage);
+	gameData.player.health = _player.health;
 	bullet.kill();
 	if(_player.x < this.x)
 	{

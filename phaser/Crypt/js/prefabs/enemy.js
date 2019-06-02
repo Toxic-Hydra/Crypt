@@ -183,6 +183,8 @@ class AttackState extends State {
 		enemy.body.velocity.x = 0;
 		//Attack
 		_player.damage(enemy.playerDamage);
+		gameData.player.health = _player.health;
+		console.log(enemy.playerDamage);
 		if(enemy.enemySpeed > 0)
 		{
 			_player.pain(-1);

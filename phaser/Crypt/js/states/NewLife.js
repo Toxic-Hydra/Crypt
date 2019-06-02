@@ -9,6 +9,7 @@ NewLife.prototype = {
 	create: function()
 	{
         // Reset run data
+        gameData.player.health = 100;
         gameData.room = 0;
         gameData.player.upgrades = [ ];
         // randomize player appearance here

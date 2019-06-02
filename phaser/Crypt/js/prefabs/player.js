@@ -77,7 +77,20 @@ var Player = function(game, x, y, key)
 	
 	this.loadPlayerData();
 
+	var meterBitmap = game.add.bitmapData(62, 16);//100
+	console.log(this.health);
+	console.log(meterBitmap.width);
+	meterBitmap.ctx.beginPath();
+	meterBitmap.ctx.rect(0,0, meterBitmap.width, meterBitmap.height);
+	meterBitmap.ctx.fillStyle = '#FF0000';
+	meterBitmap.ctx.fill();
 
+	
+	this.healthBar = game.add.sprite(30,17, meterBitmap);
+	this.healthBar.fixedToCamera = true;
+	this.barBackground = game.add.sprite(14,14, 'healthbar');
+	this.barBackground.fixedToCamera = true;
+	
 
 	game.add.existing(this);
 }
@@ -88,6 +101,7 @@ Player.prototype.constructor = Player;
 Player.prototype.loadPlayerData = function()
 {
 	// Load run-specific data
+	this.health = gameData.player.health;
 	for (var i = 0; i < gameData.player.upgrades.length; i++)
 	{
 		this.applyUpgrade(gameData.player.upgrades[i]);
@@ -103,6 +117,7 @@ Player.prototype.update = function()
 		LevelLoader.playerDied(false);
 	}
 
+	this.updateBar();
 	this.movement();
 	this.jump();
 	this.shooting(this.weaponState);
@@ -432,6 +447,17 @@ Player.prototype.pain = function(direction)
 		}, this);
 		
 	}
+}
+
+Player.prototype.updateBar = function()
+{
+	var percentage = (this.maxHealth - this.health) / this.maxHealth;
+	var bar = 62 - (62 * percentage);
+	var offset = 62 - bar;
+
+	this.healthBar.key.context.clearRect(0,0, this.healthBar.width, this.healthBar.height);
+	this.healthBar.key.context.fillRect(0, 0, bar, 16);
+	this.healthBar.key.dirty = true;
 }
 
 Player.prototype.kill = function()
