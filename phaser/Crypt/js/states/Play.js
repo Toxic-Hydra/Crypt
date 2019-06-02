@@ -36,9 +36,9 @@ Play.prototype = {
 		gui.add(_player, 'damageGun');
 		gui.add(_player, 'maxHealth');
 		gui.add(_player, 'health');*/
-		
 
-		game.camera.flash('#000000', 1000);
+
+		game.camera.flash('#000000', 500);
 	},
 
 	update: function()
@@ -49,7 +49,7 @@ Play.prototype = {
 		game.physics.arcade.overlap(_player, _enemies);
 		game.physics.arcade.collide(upgrades, this.mapLayer);
 		game.physics.arcade.collide(corpses, this.mapLayer);
-		
+
 
 
 	},
