@@ -29,7 +29,7 @@ LevelLoader.nextRoom = function()
 LevelLoader.chooseMap = function()
 {
     // This list should be randomized each run, but for testing it's convenient not to
-    var maps = [ 'map1', 'expanse', 'map2', 'map3' ];
+    var maps = [ 'map2', 'expanse', 'map1', 'map3' ];
     return maps[gameData.room % maps.length];
 }
 
@@ -38,7 +38,9 @@ LevelLoader.createMap = function(playState)
     gameData.roomName = this.chooseMap();
     var map = game.add.tilemap(gameData.roomName);
     map.addTilesetImage('colored', 'colored_transparent');
-    map.setCollisionBetween(1, 1023);
+    map.addTilesetImage('Dungeon' , 'dungeon');
+    map.setCollisionByExclusion([47,48,49,57,58,59,68,69,78,79]);
+    //map.setCollisionBetween(1, 1023);
     playState.mapLayer = map.createLayer('Tile Layer 1');
     playState.mapLayer.resizeWorld();
 

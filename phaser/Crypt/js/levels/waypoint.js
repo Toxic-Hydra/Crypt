@@ -1,6 +1,6 @@
 var WayPoint = function(game, x, y, key)
 {
-	Phaser.Sprite.call(this,game, x, y, key);
+	Phaser.Sprite.call(this,game, x, y, 'items', 'waypoint');
 	game.physics.arcade.enableBody(this);
 	this.effect = "reverse";
 	this.body.immovable = true;

@@ -14,13 +14,13 @@ MainMenu.prototype = {
 		this.menu = this.time.now + 200;
 		game.world.width = game.width;
         game.world.height = game.height;
-        logo = game.add.sprite(game.world.centerX, game.world.centerY-150, 'logo');
+        logo = game.add.sprite(game.world.centerX, game.world.centerY-150, 'Menu' , 'logo');
         logo.anchor.setTo(0.5);
-		start = game.add.sprite(game.world.centerX, game.world.centerY, 'menuStart');
+		start = game.add.sprite(game.world.centerX, game.world.centerY, 'Menu' , 'start');
 		start.anchor.setTo(0.5);
-		tutorial = game.add.sprite(game.world.centerX,game.world.centerY + start.height+5, 'menuTut' );
+		tutorial = game.add.sprite(game.world.centerX,game.world.centerY + start.height+5, 'Menu' ,'tutorial' );
 		tutorial.anchor.setTo(0.5);
-		credits = game.add.sprite(game.world.centerX, tutorial.y + tutorial.height + 5, 'menuCred');
+		credits = game.add.sprite(game.world.centerX, tutorial.y + tutorial.height + 5,'Menu' , 'credits');
 		credits.anchor.setTo(0.5);
 		game.input.onDown.add(function(){
             game.scale.fullScreenScaleMode = Phaser.ScaleManager.SHOW_ALL;

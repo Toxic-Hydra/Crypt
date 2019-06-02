@@ -1,6 +1,6 @@
 var Spikes = function(game, x, y, key)
 {
-	Phaser.Sprite.call(this, game, x, y, key);
+	Phaser.Sprite.call(this, game, x, y, 'items', 'spike');
 	//this.anchor.setTo(0.5);
 	game.physics.arcade.enableBody(this);
 	this.body.immovable = true;

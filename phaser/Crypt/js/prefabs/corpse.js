@@ -1,8 +1,8 @@
 var Corpse = function(game, corpseInfo){
-	Phaser.Sprite.call(this, game, corpseInfo.x, corpseInfo.y, 'corpse');
+	Phaser.Sprite.call(this, game, corpseInfo.x, corpseInfo.y, 'items' ,'corpse');
 	//Sprite properties
 	this.anchor.setTo(0.5);
-	this.scale.setTo(2);
+	this.scale.setTo(1);
 	this.smoothed = false;
 
 	//Physics

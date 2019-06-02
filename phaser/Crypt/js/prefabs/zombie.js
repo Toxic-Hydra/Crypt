@@ -4,7 +4,7 @@ var Zombie = function(game, x, y, key)
 {
 	Enemy.call(this, game, x, y, key);
 
-	this.enemyWeapon = game.add.weapon(6, 'bullet');
+	this.enemyWeapon = game.add.weapon(6, 'items', 'bullet');
 	this.canShoot = true;
 	this.enemyWeapon.fireRate = 1000;
 	this.enemyWeapon.bulletSpeed = 400;

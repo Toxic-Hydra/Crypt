@@ -4,6 +4,7 @@
   <image source="../img/tiles/colored_transparent.png" width="543" height="543"/>
  </tileset>
  <tileset firstgid="1025" source="objects.tsx"/>
+ <tileset firstgid="1039" source="Dungeon.tsx"/>
  <layer id="1" name="Tile Layer 1" width="50" height="40">
   <data encoding="csv">
 513,514,514,514,514,514,514,514,514,514,514,514,514,514,514,514,514,514,514,514,514,514,514,514,514,514,514,514,514,514,514,514,514,514,514,514,514,514,514,514,514,514,514,514,514,514,514,514,514,515,

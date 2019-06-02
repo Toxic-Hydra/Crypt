@@ -75,7 +75,13 @@ class PatrolState extends State
 	{
 		//enemy.patrol();
 		enemy.animations.play('right');
-		
+		if(enemy.body.velocity.x > 0){
+			enemy.animations.play('right');
+		}
+		else if(enemy.body.velocity.x < 0)
+		{
+			enemy.animations.play('left');
+		}
 	}
 
 	execute(scene, enemy)
@@ -92,12 +98,24 @@ class PatrolState extends State
 	}
 }
 
+Enemy.prototype.turn = function(enemy)
+{
+	if(_player.x < enemy.x)
+	{
+		enemy.animations.play('left');
+	}
+	else if(_player.x > enemy.x)
+	{
+		enemy.animations.play('right');
+	}
+}
 
 class PainState extends State{  //Lets play with this state a bit more. needs some more work to make it look interesting.
 	enter(game, enemy)
 	{
 		enemy.tint = Phaser.Color.RED;
 		enemy.body.velocity.x = 0;
+		enemy.turn(enemy);
 		//Experiment with tweening the character red for a longer looking pain state.
 	}
 
@@ -132,6 +150,7 @@ class ChaseState extends State {
 	enter(game, enemy)
 	{
 		//animations
+		
 	}
 
 	execute(game, enemy)
@@ -155,7 +174,7 @@ class ChaseState extends State {
 class AttackState extends State {
 	enter(game, enemy)
 	{
-	
+		enemy.turn(enemy);
 	}
 
 	execute(game, enemy)

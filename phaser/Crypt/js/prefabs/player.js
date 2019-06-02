@@ -28,7 +28,7 @@ var Player = function(game, x, y, key)
 	this.currentgun = "gun";
 	//Weapon: Gun variables
 	this.bullets = 6;
-	this.gun = game.add.weapon(this.bullets,'bullet');
+	this.gun = game.add.weapon(this.bullets,'items', 'bullet');
 	this.gun.bulletKillType = Phaser.Weapon.KILL_WORLD_BOUNDS;
 	this.gun.trackSprite(this,0,0,false); //Tracks player, can set offsets here but will need to set angle offset in shooting()
 	this.gun.bulletSpeed = 400;
