@@ -27,7 +27,14 @@ PreLoad.prototype = {	//WE CAN ADD THE LOADING SCREEN HERE
 
 		game.load.bitmapFont('carrier', 'assets/fonts/carrier_command.png', 'assets/fonts/carrier_command.xml');
 
-		game.load.audio('shoot' , 'assets/audio/shoot1.mp3');
+		game.load.audio('jump', 'assets/audio/sfx/jump.wav');
+		game.load.audio('shoot', 'assets/audio/sfx/shoot.wav');
+		game.load.audio('melee', 'assets/audio/sfx/melee.wav');
+		game.load.audio('player_hit', 'assets/audio/sfx/player_hit.wav');
+		game.load.audio('enemy_hit', 'assets/audio/sfx/enemy_hit.wav');
+		game.load.audio('collect_powerup', 'assets/audio/sfx/collect.wav');
+		game.load.audio('collect_corpse', 'assets/audio/sfx/collect_corpse.wav');
+		game.load.audio('music', 'assets/audio/game_music.mp3');
 
 		game.load.tilemap('map1', 'assets/map/EnemyTest.json', null, Phaser.Tilemap.TILED_JSON);
 		game.load.tilemap('expanse', 'assets/map/Map1.json', null, Phaser.Tilemap.TILED_JSON);

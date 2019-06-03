@@ -11,6 +11,13 @@ MainMenu.prototype = {
 
 	create: function()
 	{
+		// music (will continue to play in other states)
+        var music = game.add.audio('music');
+        music.volume = 0.7;
+        music.loop = true;
+        music.play();
+
+		// title and buttons
 		this.menu = this.time.now + 200;
 		game.world.width = game.width;
         game.world.height = game.height;
@@ -38,6 +45,8 @@ MainMenu.prototype = {
         HowToText.anchor.setTo(0.5);
         HowToText.align = 'center';
 		selection = 1;
+
+		// input
 		this.keyUp = game.input.keyboard.addKey(Phaser.Keyboard.UP);
 		this.keyDown = game.input.keyboard.addKey(Phaser.Keyboard.DOWN);
 		this.begin = game.input.keyboard.addKey(Phaser.Keyboard.Z);
