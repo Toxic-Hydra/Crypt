@@ -407,7 +407,10 @@ Player.prototype.upgrade = function(player, upgrade)
 {
 	var upgradeName = upgrade.upgradeName;
 	// Save the upgrade so the player will still have it when going into other rooms
-	gameData.player.upgrades.push(upgradeName);
+	if(upgradeName != "heal")
+	{
+		gameData.player.upgrades.push(upgradeName);
+	}
 	// Actually apply it
 	this.applyUpgrade(upgradeName);
 	upgrade.kill();
@@ -445,7 +448,7 @@ Player.prototype.applyUpgrade = function(upgradeName)
 	if(upgradeName == "maxHealth");
 	{
 		this.maxHealth += 10;
-		this.heal(10);
+		//this.heal(10);
 	}
 	if(upgradeName == "heal")
 	{

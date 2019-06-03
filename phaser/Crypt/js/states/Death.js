@@ -13,13 +13,13 @@ Death.prototype = {
         game.world.width = game.width;
         game.world.height = game.height;
 
-        var str = 'You have died (room ' + (gameData.room + 1) + ')\n\nPress spacebar to continue'
+        var str = 'You have died (room ' + (gameData.room + 1) + ')\n\nPress Z to continue'
         var text = game.add.bitmapText(game.world.width / 2, 400, 'carrier' , str, 24);
         text.align = 'center';
         text.anchor.set(0.5);
 
         // Wait for spacebar press, then go to Play state
-        var key = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
+        var key = game.input.keyboard.addKey(Phaser.Keyboard.Z);
         key.onDown.addOnce(this.newLife, this);
 
 				game.camera.flash('#000000', 1000);

@@ -17,10 +17,10 @@ Play.prototype = {
 	create: function()
 	{
 		this.doors = game.add.group();
+		corpses = game.add.group();
 		_enemies = game.add.group();
 		reverseWaypoints = game.add.group();
 		upgrades = game.add.group();
-		corpses = game.add.group();
 		traps = game.add.group();
 
 		LevelLoader.createMap(this);
