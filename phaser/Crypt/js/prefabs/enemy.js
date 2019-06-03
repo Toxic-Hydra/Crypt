@@ -38,6 +38,9 @@ var Enemy = function(game, x, y, key)
 	this.animations.add('left', Phaser.Animation.generateFrameNames('left', 1, 3), 5, true);
 	this.animations.add('right', Phaser.Animation.generateFrameNames('right', 1, 3), 5, true);
 
+	
+
+
 	game.add.existing(this);
 }
 
@@ -203,7 +206,24 @@ class AttackState extends State {
 
 Enemy.prototype.kill = function() //we have the ability to override base functions, add animations and sounds for death here.
 {
-  this.alive = false;
+	
+	//Particle Colors
+	this.particleBit = game.add.bitmapData(8,8);
+	this.particleBit.ctx.beginPath();
+	this.particleBit.ctx.rect(0,0, this.particleBit.width, this.particleBit.height);
+	this.particleBit.ctx.fillStyle = '#FF0000';
+	this.particleBit.ctx.fill();
+	game.cache.addBitmapData('particle', this.particleBit);
+
+	//EMITTER
+	this.emitter = game.add.emitter(this.x, this.y, 20);
+	this.emitter.makeParticles(game.cache.getBitmapData('particle'));
+	this.emitter.gravity = 400;
+	
+	
+	this.emitter.explode();
+
+	this.alive = false;
     this.exists = false;
     this.visible = false;
     console.log(this.dropChance);
@@ -214,7 +234,7 @@ Enemy.prototype.kill = function() //we have the ability to override base functio
 		//spawn a random upgrade
 		//currently 6 upgrades
 		var randomUp = game.rnd.integerInRange(1,6);
-		//upgrades.add.Upgrade(game, this.x, this.y, 'atkSpeedUp');
+
 		if(randomUp == 1) var Up = new Upgrade(game, 		this.x, this.y, 'items','atkSpeedUp');
 		if(randomUp == 2) var Up = new ShotUpgrade(game, 	this.x, this.y, 'items', 'shotPower');
 		if(randomUp == 3) var Up = new JumpUpgrade(game, 	this.x, this.y, 'items','extraJump');
@@ -230,6 +250,7 @@ Enemy.prototype.kill = function() //we have the ability to override base functio
     {
         this.events.onKilled$dispatch(this);
     }
+
 
     return this;
 }

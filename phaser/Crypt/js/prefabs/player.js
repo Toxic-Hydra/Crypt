@@ -78,8 +78,8 @@ var Player = function(game, x, y, key)
 	this.loadPlayerData();
 
 	var meterBitmap = game.add.bitmapData(62, 16);//100
-	console.log(this.health);
-	console.log(meterBitmap.width);
+	//console.log(this.health);
+	//console.log(meterBitmap.width);
 	meterBitmap.ctx.beginPath();
 	meterBitmap.ctx.rect(0,0, meterBitmap.width, meterBitmap.height);
 	meterBitmap.ctx.fillStyle = '#FF0000';
@@ -479,7 +479,7 @@ Player.prototype.updateBar = function()
 	var percentage = (this.maxHealth - this.health) / this.maxHealth;
 	var bar = 62 - (62 * percentage);
 	var offset = 62 - bar;
-
+	//console.log(this.health);
 	this.healthBar.key.context.clearRect(0,0, this.healthBar.width, this.healthBar.height);
 	this.healthBar.key.context.fillRect(0, 0, bar, 16);
 	this.healthBar.key.dirty = true;
