@@ -209,7 +209,7 @@ Enemy.prototype.kill = function() //we have the ability to override base functio
     console.log(this.dropChance);
     
 
-    if(this.dropChance <= 0.30)
+    if(this.dropChance <= 1.30)
     {
 		//spawn a random upgrade
 		//currently 6 upgrades
