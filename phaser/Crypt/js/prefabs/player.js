@@ -5,7 +5,7 @@ var Player = function(game, x, y, key)
 	Phaser.Sprite.call(this, game, x, y, key);
 	//Sprite properties
 	this.anchor.setTo(0.5);
-	this.scale.setTo(4);
+	//this.scale.setTo(4);
 	this.smoothed = false;
 
 	//Physics
@@ -85,12 +85,24 @@ var Player = function(game, x, y, key)
 	meterBitmap.ctx.fillStyle = '#FF0000';
 	meterBitmap.ctx.fill();
 
-	
+	//HUD HEALTH
 	this.healthBar = game.add.sprite(30,17, meterBitmap);
 	this.healthBar.fixedToCamera = true;
 	this.barBackground = game.add.sprite(14,14, 'healthbar');
 	this.barBackground.fixedToCamera = true;
 	
+	//ANIMATIONS
+	//this.animations.add('left', Phaser.Animation.generateFrameNames('left', 1, 3), 5, true);
+	this.lastDirection = 'right';
+	this.animations.add('left', Phaser.Animation.generateFrameNames('left', 1, 6), 6, true);
+	this.animations.add('right' , Phaser.Animation.generateFrameNames('right', 1, 6), 6, true);
+	this.animations.add('idlel' , ['idleleft'] , 1, true);
+	this.animations.add('idler' , ['idleright'] , 1, true);
+	this.animations.add('rjump' , Phaser.Animation.generateFrameNames('rjump', 1,6), 6, true);
+	this.animations.add('ljump' , Phaser.Animation.generateFrameNames('ljump', 1, 6), 6, true);
+	this.animations.add('mright', Phaser.Animation.generateFrameNames('mright', 1, 3), 3, true);
+	this.animations.add('mleft' , Phaser.Animation.generateFrameNames('mleft', 1, 3), 3, true);
+
 
 	game.add.existing(this);
 }
@@ -138,15 +150,25 @@ Player.prototype.movement = function() //if jumping limit speed
 			//animation left
 
 			this.body.velocity.x = this.characterSpeed;
+			this.lastDirection = 'right';
+			this.animations.play('right');
 		}
 		else if(this.moveRight.isDown)
 		{
 			//animation right
 			this.body.velocity.x = -this.characterSpeed;
+			this.lastDirection = 'left';
+			this.animations.play('left');
 		}
 		else
 		{
 			//animation idle
+			if(this.body.velocity.y == 0){
+				if(this.lastDirection == 'right')
+					this.animations.play('idler');
+				else if(this.lastDirection == 'left')
+					this.animations.play('idlel');
+			}
 			this.body.velocity.x = 0;
 		}
 	}
@@ -173,7 +195,12 @@ Player.prototype.shooting = function(state)
 		if(this.currentgun == "gun"){
 			if(this.shootDirectionright.isDown)
 			{
-
+				this.lastDirection = 'right';
+				if(this.body.velocity.x == 0){
+					this.animations.play('idler');
+				}
+				else
+					this.animations.play('right');
 				this.gun.fireAngle = Phaser.ANGLE_RIGHT;
 				this.gun.fireOffset(16,-4);
 			}
@@ -184,8 +211,14 @@ Player.prototype.shooting = function(state)
 			}
 			else if(this.shootDirectionleft.isDown)
 			{
+				this.lastDirection = 'left';
+				if(this.body.velocity.x == 0) {
+					this.animations.play('idlel');
+				}
+				else
+					this.animations.play('left');
 				this.gun.fireAngle = Phaser.ANGLE_LEFT;
-				this.gun.fireOffset(16,-4);
+				this.gun.fireOffset(-16,-4);
 			}
 			
 		}
@@ -194,7 +227,8 @@ Player.prototype.shooting = function(state)
 
 			if(this.shootDirectionright.isDown)
 			{
-
+				this.lastDirection = 'right';
+				this.animations.play('right');
 				this.gun.fireAngle = Phaser.ANGLE_RIGHT;
 				this.gun.fireOffset(16,-4);
 				this.gun.fireOffset(16,-4);
@@ -214,24 +248,17 @@ Player.prototype.shooting = function(state)
 			}
 			else if(this.shootDirectionleft.isDown)
 			{
+				this.lastDirection = 'left';
+				this.animations.play('left');
 				this.gun.fireAngle = Phaser.ANGLE_LEFT;
-				this.gun.fireOffset(16,-4);
-				this.gun.fireOffset(16,-4);
-				this.gun.fireOffset(16,-4);
-				this.gun.fireOffset(16,-4);
-				this.gun.fireOffset(16,-4);
-				this.gun.fireOffset(16,-4);
+				this.gun.fireOffset(-16,-4);
+				this.gun.fireOffset(-16,-4);
+				this.gun.fireOffset(-16,-4);
+				this.gun.fireOffset(-16,-4);
+				this.gun.fireOffset(-16,-4);
+				this.gun.fireOffset(-16,-4);
 			}
-			/*else if(this.shootDirection.down.isDown)
-			{
-				this.gun.fireAngle = Phaser.ANGLE_DOWN;
-				this.gun.fireOffset(16,-4);
-				this.gun.fireOffset(16,-4);
-				this.gun.fireOffset(16,-4);
-				this.gun.fireOffset(16,-4);
-				this.gun.fireOffset(16,-4);
-				this.gun.fireOffset(16,-4);
-			}*/
+
 		}
 
 	}
@@ -241,34 +268,22 @@ Player.prototype.shooting = function(state)
 			//TIMER LOGIC
 			//Timer prevents killed hitbox to respawn instantly.
 			//this.meleeRect.body.setSize(50, 10, 0, -5);
-			
+			this.lastDirection = 'right';
+			this.animations.play('mright');
 			this.meleeRect.reset(this.x, this.y);
-			this.canAttack = false;
-			this.meleeTime.resume();
-		}
-		else if(this.shootDirectionup.isDown && this.canAttack)
-		{//SetSize(width, height, <offsetX>, <offsetY>) //50, 10 og
-			
-			this.meleeRectVert.reset(this.x, this.y);
-		
 			this.canAttack = false;
 			this.meleeTime.resume();
 		}
 		else if(this.shootDirectionleft.isDown && this.canAttack)
 		{
+			this.lastDirection = 'left';
+			this.animations.play('mleft');
 			//this.meleeRect.body.setSize(-50, 10, 0, -5);
 			this.meleeRect.reset(this.x - this.meleeRect.width*2, this.y);
 			this.canAttack = false;
 			this.meleeTime.resume();
 		}
-		else if(this.down.isDown && this.canAttack)
-		{
-			this.meleeRect.body.setSize(10, 50, 0, -5);
-			this.meleeRect.reset(this.x, this.y);
-			
-			this.canAttack = false;
-			this.meleeTime.resume();
-		}
+		
 
 		else
 		{
@@ -313,9 +328,19 @@ Player.prototype.jump = function()
         if(this.up.justPressed())
         {
         	//jump animation start or other visuals
+        	//CHECK LAST DIRECTION
+        	if(this.lastDirection == 'right')
+        	{
+        		this.animations.play('rjump');
+        	}
+        	else if(this.lastDirection == 'left')
+        	{
+        		this.animations.play('ljump');
+        	}
         	this.gunSound.play();
 
         }
+
         
     } 
     
