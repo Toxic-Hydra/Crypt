@@ -215,12 +215,12 @@ Enemy.prototype.kill = function() //we have the ability to override base functio
 		//currently 6 upgrades
 		var randomUp = game.rnd.integerInRange(1,6);
 		//upgrades.add.Upgrade(game, this.x, this.y, 'atkSpeedUp');
-		if(randomUp == 1) var Up = new Upgrade(game, this.x, this.y, 'atkSpeedUp');
-		if(randomUp == 2) var Up = new ShotUpgrade(game, this.x, this.y, 'shotPower');
-		if(randomUp == 3) var Up = new JumpUpgrade(game, this.x, this.y, 'extraJump');
-		if(randomUp == 4) var Up = new FireRate(game, this.x, this.y, 'bulletspeed');
-		if(randomUp == 5) var Up = new MaxHealth(game, this.x, this.y, 'maxhealth');
-		if(randomUp == 6) var Up = new Heal(game, this.x, this.y, 'heal');
+		if(randomUp == 1) var Up = new Upgrade(game, 		this.x, this.y, 'items','atkSpeedUp');
+		if(randomUp == 2) var Up = new ShotUpgrade(game, 	this.x, this.y, 'items', 'shotPower');
+		if(randomUp == 3) var Up = new JumpUpgrade(game, 	this.x, this.y, 'items','extraJump');
+		if(randomUp == 4) var Up = new FireRate(game, 		this.x, this.y, 'items','bulletspeed');
+		if(randomUp == 5) var Up = new MaxHealth(game,		this.x, this.y, 'items', 'maxhealth');
+		if(randomUp == 6) var Up = new Heal(game, 			this.x, this.y,	'items','heal');
 
 
 		upgrades.add(Up);

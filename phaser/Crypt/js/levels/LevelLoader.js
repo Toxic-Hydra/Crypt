@@ -51,8 +51,12 @@ LevelLoader.createMap = function(playState)
     map.createFromObjects('enemies', 1034, 'big', 0, true, false, _enemies, Zombie);
     map.createFromObjects('enemies', 1033, 'bat', 0, true, false, _enemies, Pursuer);
     map.createFromObjects('reverse', 1037, 'waypoint', 0, true, false, reverseWaypoints, WayPoint );
-    map.createFromObjects('upgrades', 1029, 'atkSpeedUp', 0, true, false, upgrades, Upgrade);
-    map.createFromObjects('upgrades', 1000, 'shotPower', 0, true, false, upgrades, ShotUpgrade);
+    map.createFromObjects('upgrades', 1029, 'items', 'atkSpeedUp', true, false, upgrades, Upgrade);
+    map.createFromObjects('upgrades', 1036, 'items', 'shotPower', true, false, upgrades, ShotUpgrade);
+    map.createFromObjects('upgrades', 1027, 'items', 'extraJump', true, false, upgrades, Upgrade);
+    map.createFromObjects('upgrades', 1025, 'items', 'bulletspeed', true, false, upgrades, ShotUpgrade);
+    map.createFromObjects('upgrades', 1028, 'items', 'maxhealth', true, false, upgrades, Upgrade);
+    map.createFromObjects('upgrades', 1026, 'items', 'heal', true, false, upgrades, ShotUpgrade);
     map.createFromObjects('doors', 290, 'enterDoor', 0, true, false, playState.doors);
     map.createFromObjects('doors', 291, 'exitDoor', 0, true, false, playState.doors, Door);
     map.createFromObjects('traps', 23, 'spike', 0, true, false, traps, Spikes);
