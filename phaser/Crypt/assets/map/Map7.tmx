@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.4" orientation="orthogonal" renderorder="right-down" width="120" height="48" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="29">
+<map version="1.2" tiledversion="1.2.4" orientation="orthogonal" renderorder="right-down" width="120" height="48" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="30">
  <tileset firstgid="1" name="colored" tilewidth="16" tileheight="16" spacing="1" tilecount="1024" columns="32">
   <image source="../img/tiles/colored_transparent.png" width="543" height="543"/>
  </tileset>
@@ -121,13 +121,11 @@
   <object id="21" gid="1033" x="744" y="316" width="31" height="21"/>
   <object id="22" gid="1033" x="996" y="652" width="31" height="21"/>
   <object id="23" gid="1034" x="922" y="655" width="22" height="47"/>
-  <object id="24" gid="1037" x="530" y="115" width="16" height="32"/>
-  <object id="25" gid="1037" x="622" y="113" width="16" height="32"/>
-  <object id="26" gid="1034" x="578" y="110" width="22" height="47"/>
+  <object id="26" gid="1034" x="840" y="312" width="22" height="47"/>
  </objectgroup>
  <objectgroup id="4" name="reverse">
-  <object id="9" gid="1037" x="610" y="660" width="16" height="32"/>
-  <object id="10" gid="1037" x="1119" y="658" width="16" height="32"/>
+  <object id="9" gid="1037" x="613" y="652" width="16" height="32"/>
+  <object id="10" gid="1037" x="1116" y="654" width="16" height="32"/>
   <object id="11" gid="1037" x="610" y="323" width="16" height="32"/>
   <object id="12" gid="1037" x="906" y="327" width="16" height="32"/>
   <object id="13" gid="1037" x="36" y="147" width="16" height="32"/>
@@ -136,6 +134,7 @@
   <object id="19" gid="1037" x="540" y="497" width="16" height="32"/>
   <object id="27" gid="1037" x="535" y="192" width="16" height="32"/>
   <object id="28" gid="1037" x="537" y="287" width="16" height="32"/>
+  <object id="29" gid="1037" x="537" y="398" width="16" height="32"/>
  </objectgroup>
  <objectgroup id="5" name="doors">
   <object id="1" gid="290" x="41" y="496" width="24" height="24"/>

@@ -20,7 +20,7 @@ PreLoad.prototype = {	//WE CAN ADD THE LOADING SCREEN HERE
 		game.load.image('dungeon' , 'assets/img/tiles/DungeonTileset.png');
 
 		game.load.image('healthbar' , 'assets/img/healthbar.png');
-		
+
 
 		game.load.image('enterDoor', 'assets/img/enterDoor.png');
 		game.load.image('exitDoor', 'assets/img/exitDoor.png');
@@ -36,6 +36,7 @@ PreLoad.prototype = {	//WE CAN ADD THE LOADING SCREEN HERE
 		game.load.audio('collect_corpse', 'assets/audio/sfx/collect_corpse.wav');
 		game.load.audio('music', 'assets/audio/game_music.mp3');
 
+		game.load.tilemap('Tutorial', 'assets/map/Tutorial.json', null, Phaser.Tilemap.TILED_JSON);
 		game.load.tilemap('map1', 'assets/map/EnemyTest.json', null, Phaser.Tilemap.TILED_JSON);
 		game.load.tilemap('expanse', 'assets/map/Map1.json', null, Phaser.Tilemap.TILED_JSON);
 		game.load.tilemap('map2', 'assets/map/Map2.json', null, Phaser.Tilemap.TILED_JSON);

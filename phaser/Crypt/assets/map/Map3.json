@@ -462,7 +462,7 @@
         {
          "columns":32,
          "firstgid":1,
-         "image":"..\/..\/..\/..\/..\/..\/img\/tiles\/colored_transparent.png",
+         "image":"..\/img\/tiles\/colored_transparent.png",
          "imageheight":543,
          "imagewidth":543,
          "margin":0,
@@ -489,67 +489,67 @@
          "tiles":[
                 {
                  "id":0,
-                 "image":"..\/..\/..\/..\/..\/..\/img\/bulletspeed.png",
+                 "image":"..\/img\/bulletspeed.png",
                  "imageheight":32,
                  "imagewidth":19
                 }, 
                 {
                  "id":1,
-                 "image":"..\/..\/..\/..\/..\/..\/img\/heal.png",
+                 "image":"..\/img\/heal.png",
                  "imageheight":32,
                  "imagewidth":32
                 }, 
                 {
                  "id":2,
-                 "image":"..\/..\/..\/..\/..\/..\/img\/jumpup.png",
+                 "image":"..\/img\/jumpup.png",
                  "imageheight":28,
                  "imagewidth":34
                 }, 
                 {
                  "id":3,
-                 "image":"..\/..\/..\/..\/..\/..\/img\/maxhealth.png",
+                 "image":"..\/img\/maxhealth.png",
                  "imageheight":30,
                  "imagewidth":31
                 }, 
                 {
                  "id":4,
-                 "image":"..\/..\/..\/..\/..\/..\/img\/upatkspeed.png",
+                 "image":"..\/img\/upatkspeed.png",
                  "imageheight":32,
                  "imagewidth":19
                 }, 
                 {
                  "id":8,
-                 "image":"..\/..\/..\/..\/..\/..\/img\/atlas\/mapbat.png",
+                 "image":"..\/img\/atlas\/mapbat.png",
                  "imageheight":21,
                  "imagewidth":31
                 }, 
                 {
                  "id":9,
-                 "image":"..\/..\/..\/..\/..\/..\/img\/atlas\/mapbig.png",
+                 "image":"..\/img\/atlas\/mapbig.png",
                  "imageheight":47,
                  "imagewidth":22
                 }, 
                 {
                  "id":10,
-                 "image":"..\/..\/..\/..\/..\/..\/img\/atlas\/mapsmall.png",
+                 "image":"..\/img\/atlas\/mapsmall.png",
                  "imageheight":40,
                  "imagewidth":24
                 }, 
                 {
                  "id":11,
-                 "image":"..\/..\/..\/..\/..\/..\/img\/shotpower.png",
+                 "image":"..\/img\/shotpower.png",
                  "imageheight":16,
                  "imagewidth":16
                 }, 
                 {
                  "id":12,
-                 "image":"..\/..\/..\/..\/..\/..\/img\/atlas\/mapcollider.png",
+                 "image":"..\/img\/atlas\/mapcollider.png",
                  "imageheight":32,
                  "imagewidth":16
                 }, 
                 {
                  "id":13,
-                 "image":"..\/..\/..\/..\/..\/..\/img\/spike.png",
+                 "image":"..\/img\/spike.png",
                  "imageheight":32,
                  "imagewidth":32
                 }],
@@ -558,7 +558,7 @@
         {
          "columns":10,
          "firstgid":1039,
-         "image":"..\/..\/..\/..\/..\/..\/img\/tiles\/DungeonTileset.png",
+         "image":"..\/img\/tiles\/DungeonTileset.png",
          "imageheight":160,
          "imagewidth":160,
          "margin":0,
