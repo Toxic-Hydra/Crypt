@@ -22,5 +22,6 @@ game.state.add("preload", PreLoad);
 game.state.add("newLife", NewLife);
 game.state.add("play", Play);
 game.state.add("death", Death);
+game.state.add("credits", Credits);
 
 game.state.start("preload");

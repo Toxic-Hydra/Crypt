@@ -92,10 +92,12 @@ MainMenu.prototype = {
 			else if(selection == 2)
 			{
 				//FIGURE OUT THIS STATE
+
 			}
 			else if(selection == 3)
 			{
 				//ADD CREDITS
+				game.state.start("credits");
 			}
 
 		}
