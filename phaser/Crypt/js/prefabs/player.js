@@ -33,7 +33,6 @@ var Player = function(game, x, y, key)
 	this.gun.trackSprite(this,0,0,false); //Tracks player, can set offsets here but will need to set angle offset in shooting()
 	this.gun.bulletSpeed = 400;
 	this.gun.fireRate = 500;
-	this.gunSound = game.add.audio('shoot');
 	//this.gun.bulletInheritSpriteSpeed = true;
 	//Weapon: Melee variables
 	/*
@@ -59,6 +58,17 @@ var Player = function(game, x, y, key)
 	this.meleeTime.loop(this.meleeAttackRate, this.meleeAttackFlag, this);
 	this.meleeTime.start();
 
+	//Sfx
+	this.jumpSound = game.add.audio('jump');
+	this.gunSound = game.add.audio('shoot');
+	this.meleeSound = game.add.audio('melee');
+	this.hurtSound = game.add.audio('player_hit');
+	this.enemyHurtSound = game.add.audio('enemy_hit');
+	this.collectPowerupSound = game.add.audio('collect_powerup');
+	this.collectCorpseSound = game.add.audio('collect_corpse');
+	this.jumpSound.volume = 0.2;
+	this.collectPowerupSound.volume = 0.5;
+	this.collectCorpseSound.volume = 0.6;
 
 	//Movement Keys
 	this.moveLeft = game.input.keyboard.addKey(Phaser.Keyboard.RIGHT);
@@ -337,7 +347,7 @@ Player.prototype.jump = function()
         	{
         		this.animations.play('ljump');
         	}
-        	this.gunSound.play();
+        	this.jumpSound.play();
 
         }
 
@@ -358,7 +368,7 @@ Player.prototype.damageEnemy = function(bullet, enemy) //sprite goes before grou
 	enemy.damage(this.damageGun);
 	console.log(this.damageGun);
 	enemy.stateMachine.transition('pain');
-	
+	this.enemyHurtSound.play();
 }
 
 Player.prototype.meleeDamage = function(sword, enemy)
@@ -368,6 +378,7 @@ Player.prototype.meleeDamage = function(sword, enemy)
 	//console.log(25 + (0.25*this.damageGun));
 	enemy.damage(25 + (0.25 * this.damageGun));
 	enemy.stateMachine.transition('pain');
+	this.enemyHurtSound.play();
 	if(enemy.x < this.x)
 	{
 		//launch enemy left
@@ -396,10 +407,14 @@ Player.prototype.upgrade = function(player, upgrade)
 {
 	var upgradeName = upgrade.upgradeName;
 	// Save the upgrade so the player will still have it when going into other rooms
-	gameData.player.upgrades.push(upgradeName);
+	if(upgradeName != "heal")
+	{
+		gameData.player.upgrades.push(upgradeName);
+	}
 	// Actually apply it
 	this.applyUpgrade(upgradeName);
 	upgrade.kill();
+	this.collectPowerupSound.play();
 }
 Player.prototype.applyUpgrade = function(upgradeName)
 {
@@ -433,7 +448,7 @@ Player.prototype.applyUpgrade = function(upgradeName)
 	if(upgradeName == "maxHealth");
 	{
 		this.maxHealth += 10;
-		this.heal(10);
+		//this.heal(10);
 	}
 	if(upgradeName == "heal")
 	{
@@ -447,6 +462,7 @@ Player.prototype.consumeCorpse = function(player, corpse)
 	{
 		corpse.setConsumed();
 		corpse.applyUpgradeToPlayer(this);
+		this.collectCorpseSound.play();
 	}
 }
 
@@ -471,6 +487,7 @@ Player.prototype.pain = function(direction)
 			_player.immune = false;
 		}, this);
 		
+		this.hurtSound.play();
 	}
 }
 
