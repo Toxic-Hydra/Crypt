@@ -50,11 +50,6 @@ PreLoad.prototype = {	//WE CAN ADD THE LOADING SCREEN HERE
 	},
 	create: function()
 	{
-
-
-		game.state.start("Main");//newLife
-
-
-
+		game.state.start("Main");
 	}
 }

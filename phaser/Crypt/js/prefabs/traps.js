@@ -11,9 +11,9 @@ Spikes.prototype.constructor = Spikes;
 
 Spikes.prototype.update = function()
 {
-	game.physics.arcade.collide(_player.meleeRect, this, this.playerBounce); //this ones just for fun.
-	game.physics.arcade.collide(_player, this, _player.kill);
-	game.physics.arcade.collide( _enemies, this, this.enemyKiller);
+	game.physics.arcade.collide(_player.meleeRect, this, this.playerBounce, null, this); //this ones just for fun.
+	game.physics.arcade.collide(_player, this, _player.kill, null, _player);
+	game.physics.arcade.collide(_enemies, this, this.enemyKiller, null, this);
 }
 
 Spikes.prototype.playerBounce = function(player, spike)

@@ -133,11 +133,11 @@ Player.prototype.loadPlayerData = function()
 
 Player.prototype.update = function()
 {
-	if (this.y > game.world.height - this.height - 10)
-	{
-		// fell off the screen 
-		LevelLoader.playerDied(false);
-	}
+	// if (this.y > game.world.height - this.height - 10)
+	// {
+	// 	// fell off the screen
+	// 	LevelLoader.playerDied(false);
+	// }
 
 	this.updateBar();
 	this.movement();

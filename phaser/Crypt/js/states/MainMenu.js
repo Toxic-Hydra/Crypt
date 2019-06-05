@@ -7,15 +7,21 @@ var MainMenu = function() {
 	var logo;
 };
 
+// Game music must be a global so it isn't restarted when reloading this state
+var gameMusic;
+
 MainMenu.prototype = {
 
 	create: function()
 	{
-		// music (will continue to play in other states)
-        var music = game.add.audio('music');
-        music.volume = 0.7;
-        music.loop = true;
-        music.play();
+		// Start music
+		if (!gameMusic)
+		{
+			gameMusic = game.add.audio('music');
+			gameMusic.volume = 0.7;
+			gameMusic.loop = true;
+			gameMusic.play();
+		}
 
 		// title and buttons
 		this.menu = this.time.now + 200;
@@ -100,7 +106,10 @@ MainMenu.prototype = {
 			}
 			else if(selection == 2)
 			{
-				//FIGURE OUT THIS STATE
+				// Start tutorial
+				LevelLoader.resetRun();
+				LevelLoader.tutorial = true;
+				game.state.start("play");
 			}
 			else if(selection == 3)
 			{

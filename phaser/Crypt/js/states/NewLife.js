@@ -9,9 +9,7 @@ NewLife.prototype = {
 	create: function()
 	{
         // Reset run data
-        gameData.player.health = 100;
-        gameData.room = 0;
-        gameData.player.upgrades = [ ];
+        LevelLoader.resetRun();
         // randomize player appearance here
 
         //game.stage.backgroundColor = '#8594a3';
