@@ -1,9 +1,10 @@
 
 LevelLoader = new Object();
+LevelLoader.tutorial = false;
 
 LevelLoader.playerDied = function(leaveCorpse)
 {
-    if (leaveCorpse)
+    if (leaveCorpse && !LevelLoader.tutorial)
     {
         var corpse = {
             room: gameData.roomName,
@@ -26,8 +27,20 @@ LevelLoader.nextRoom = function()
     game.camera.onFadeComplete.addOnce(LevelLoader.nextRoomFade);
 }
 
+LevelLoader.resetRun = function()
+{
+    LevelLoader.tutorial = false;
+    gameData.player.health = 100;
+    gameData.room = 0;
+    gameData.player.upgrades = [ ];
+} 
+
 LevelLoader.chooseMap = function()
 {
+    if (LevelLoader.tutorial)
+    {
+        return 'Tutorial';
+    }
     // This list should be randomized each run, but for testing it's convenient not to
     var maps = [ 'map2', 'expanse', 'map1', 'map3', 'map4', 'map5', 'map6', 'map7', 'map8', 'map9' ];
     return maps[gameData.room % maps.length];
@@ -61,7 +74,14 @@ LevelLoader.createMap = function(playState)
     map.createFromObjects('doors', 291, 'exitDoor', 0, true, false, playState.doors, Door);
     map.createFromObjects('traps', 23, 'spike', 0, true, false, traps, Spikes);
 
-    LevelLoader.loadCorpses();
+    if (LevelLoader.tutorial)
+    {
+        LevelLoader.createTutorialText();
+    }
+    else
+    {
+        LevelLoader.loadCorpses();
+    }
 }
 
 LevelLoader.loadCorpses = function()
@@ -76,13 +96,37 @@ LevelLoader.loadCorpses = function()
     }
 }
 
+LevelLoader.createTutorialText = function()
+{
+    game.add.bitmapText(50, 390, 'carrier', " Use arrow keys\n\nto move and jump", 12);
+    game.add.bitmapText(520, 330, 'carrier', "You can jump again\n\n    in the air", 12);
+    game.add.bitmapText(30, 130, 'carrier', "  Use Z,X,C to attack\n\nand R to switch between\n\n   melee and ranged", 12);
+    game.add.bitmapText(400, 120, 'carrier', "Find powerups or gravestones\n\n to improve your character", 12);
+}
+
 LevelLoader.playerDiedFade = function()
 {
-    game.state.start("death");
+    if (LevelLoader.tutorial)
+    {
+        // Reload the tutorial
+        game.state.start("play");
+    }
+    else
+    {
+        game.state.start("death");
+    }
 }
 
 LevelLoader.nextRoomFade = function()
 {
-    gameData.room += 1;
-    game.state.start("play");
+    if (LevelLoader.tutorial)
+    {
+        // Return to menu
+        game.state.start("Main");
+    }
+    else
+    {
+        gameData.room += 1;
+        game.state.start("play");
+    }
 }

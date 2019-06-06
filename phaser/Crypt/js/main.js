@@ -6,6 +6,7 @@
 
 var gameData = {
     room: 0,
+    bestRoom: 0,
     roomName: "",
     player: {
         // put other data needed to create the player (appearance info) here
