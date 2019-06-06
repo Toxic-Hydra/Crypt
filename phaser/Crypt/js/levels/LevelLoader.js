@@ -100,8 +100,8 @@ LevelLoader.createTutorialText = function()
 {
     game.add.bitmapText(50, 390, 'carrier', " Use arrow keys\n\nto move and jump", 12);
     game.add.bitmapText(520, 330, 'carrier', "You can jump again\n\n    in the air", 12);
-    game.add.bitmapText(30, 130, 'carrier', "  Use Z,X,C to attack\n\nand R to switch between\n\n   melee and ranged", 12);
-    game.add.bitmapText(400, 120, 'carrier', "Find powerups or gravestones\n\n to improve your character", 12);
+    game.add.bitmapText(30, 100, 'carrier', "  Use Z,C to attack \n\n    horizontally\n\nand R to switch between\n\n   melee and ranged", 12);
+    game.add.bitmapText(400, 120, 'carrier', "Find powerups or gravestones\n\n to improve your character\n\n Enemies get stronger every Room", 12);
 }
 
 LevelLoader.playerDiedFade = function()

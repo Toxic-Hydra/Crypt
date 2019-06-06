@@ -7,6 +7,7 @@ var Player = function(game, x, y, key)
 	this.anchor.setTo(0.5);
 	//this.scale.setTo(4);
 	this.smoothed = false;
+	
 
 	//Physics
 	game.physics.arcade.enableBody(this);
@@ -113,8 +114,18 @@ var Player = function(game, x, y, key)
 	this.animations.add('idler' , ['idleright'] , 1, true);
 	this.animations.add('rjump' , Phaser.Animation.generateFrameNames('rjump', 1,6), 6, true);
 	this.animations.add('ljump' , Phaser.Animation.generateFrameNames('ljump', 1, 6), 6, true);
-	this.animations.add('mright', Phaser.Animation.generateFrameNames('mright', 1, 3), 3, true);
-	this.animations.add('mleft' , Phaser.Animation.generateFrameNames('mleft', 1, 3), 3, true);
+	this.animations.add('mright', Phaser.Animation.generateFrameNames('mright', 1, 3), 12, true);
+	this.animations.add('mleft' , Phaser.Animation.generateFrameNames('mleft', 1, 3), 12, true);
+
+	//COLLECTION PARTICLES
+	this.particleBit = game.add.bitmapData(4,4);
+	this.particleBit.ctx.beginPath();
+	this.particleBit.ctx.rect(0,0, this.particleBit.width, this.particleBit.height);
+	this.particleBit.ctx.fillStyle = '#ffffff';
+	this.particleBit.ctx.fill();
+	game.cache.addBitmapData('particle2', this.particleBit);
+
+	
 
 
 	game.add.existing(this);
@@ -176,7 +187,7 @@ Player.prototype.movement = function() //if jumping limit speed
 		else
 		{
 			//animation idle
-			if(this.body.velocity.y == 0){
+			if(this.body.velocity.y == 0 && !this.shootDirectionleft.isDown && !this.shootDirectionright.isDown){
 				if(this.lastDirection == 'right')
 					this.animations.play('idler');
 				else if(this.lastDirection == 'left')
@@ -217,11 +228,11 @@ Player.prototype.shooting = function(state)
 				this.gun.fireAngle = Phaser.ANGLE_RIGHT;
 				this.gun.fireOffset(16,-4);
 			}
-			else if(this.shootDirectionup.isDown)
+			/*else if(this.shootDirectionup.isDown)
 			{
 				this.gun.fireAngle = Phaser.ANGLE_UP;
 				this.gun.fireOffset(16,-4);//Need to set these offsets according to the sprite animations
-			}
+			}*/
 			else if(this.shootDirectionleft.isDown)
 			{
 				this.lastDirection = 'left';
@@ -249,7 +260,7 @@ Player.prototype.shooting = function(state)
 				this.gun.fireOffset(16,-4);
 				this.gun.fireOffset(16,-4);
 			}
-			else if(this.shootDirectionup.isDown)
+			/*else if(this.shootDirectionup.isDown)
 			{
 				this.gun.fireAngle = Phaser.ANGLE_UP;
 				this.gun.fireOffset(16,-4);//Need to set these offsets according to the sprite animations
@@ -258,7 +269,7 @@ Player.prototype.shooting = function(state)
 				this.gun.fireOffset(16,-4);
 				this.gun.fireOffset(16,-4);
 				this.gun.fireOffset(16,-4);
-			}
+			}*/
 			else if(this.shootDirectionleft.isDown)
 			{
 				this.lastDirection = 'left';
@@ -420,6 +431,14 @@ Player.prototype.upgrade = function(player, upgrade)
 	this.applyUpgrade(upgradeName);
 	upgrade.kill();
 	this.collectPowerupSound.play();
+	//PARTICLES
+	//EMITTER
+	this.emitter = game.add.emitter(this.x, this.y, 20);
+	this.emitter.makeParticles(game.cache.getBitmapData('particle2'));
+	this.emitter.minParticleAlpha = 0.2;
+	this.emitter.lifespan = 500;
+	this.emitter.gravity = -400;
+	this.emitter.explode();
 }
 Player.prototype.applyUpgrade = function(upgradeName)
 {

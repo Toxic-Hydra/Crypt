@@ -10,7 +10,7 @@ var Enemy = function(game, x, y, key)
 	this.body.gravity.y = 900;
 	this.body.collideWorldBounds = true;
 	this.enemySpeed = 100;
-	this.maxHealth = 100 +(25 *(gameData.room)); //Should be upgraded each map, percentage can be done with * 1.05 for 5% etc. gamedata.room + 1
+	this.maxHealth = 50 +(35 *(gameData.room)); //Should be upgraded each map, percentage can be done with * 1.05 for 5% etc. gamedata.room + 1
 	this.setHealth(this.maxHealth);
 	this.chaseRange = 60;
 	this.playerDamage = 10 + (15 * (gameData.room));	

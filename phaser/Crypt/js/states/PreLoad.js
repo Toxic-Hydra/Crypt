@@ -27,14 +27,14 @@ PreLoad.prototype = {	//WE CAN ADD THE LOADING SCREEN HERE
 
 		game.load.bitmapFont('carrier', 'assets/fonts/carrier_command.png', 'assets/fonts/carrier_command.xml');
 
-		game.load.audio('jump', 'assets/audio/sfx/jump.wav');
-		game.load.audio('shoot', 'assets/audio/sfx/shoot.wav');
-		game.load.audio('melee', 'assets/audio/sfx/melee.wav');
-		game.load.audio('player_hit', 'assets/audio/sfx/player_hit.wav');
-		game.load.audio('enemy_hit', 'assets/audio/sfx/enemy_hit.wav');
-		game.load.audio('collect_powerup', 'assets/audio/sfx/collect.wav');
-		game.load.audio('collect_corpse', 'assets/audio/sfx/collect_corpse.wav');
-		game.load.audio('music', 'assets/audio/game_music.mp3');
+		game.load.audio('jump', 'assets/audio/sfx/jump.wav', 0.5);
+		game.load.audio('shoot', 'assets/audio/sfx/shoot.wav', 0.5);
+		game.load.audio('melee', 'assets/audio/sfx/melee.wav', 0.5);
+		game.load.audio('player_hit', 'assets/audio/sfx/player_hit.wav', 0.5);
+		game.load.audio('enemy_hit', 'assets/audio/sfx/enemy_hit.wav', 0.5);
+		game.load.audio('collect_powerup', 'assets/audio/sfx/collect.wav', 0.5);
+		game.load.audio('collect_corpse', 'assets/audio/sfx/collect_corpse.wav', 0.5);
+		game.load.audio('music', 'assets/audio/game_music.mp3', 0);
 
 		game.load.tilemap('Tutorial', 'assets/map/Tutorial.json', null, Phaser.Tilemap.TILED_JSON);
 		game.load.tilemap('map1', 'assets/map/EnemyTest.json', null, Phaser.Tilemap.TILED_JSON);
@@ -50,23 +50,23 @@ PreLoad.prototype = {	//WE CAN ADD THE LOADING SCREEN HERE
 	},
 	create: function()
 	{
-<<<<<<< HEAD
+
 		// music (will continue to play in other states)
 		//Seems I was wrong about allowMultiple = false stoping the original music. Instead it just layers
 		//adding it here did end up being the correct solution.
 		var music = game.add.audio('music');
-		music.volume = 0.7;
+		music.volume = 0.1;
         music.allowMultiple = false;
-        music.volume = 0.7;
         music.loop = true;
         music.play();
 
-		game.state.start("Main");//newLife
+		
 
-
-
-=======
-		game.state.start("Main");
->>>>>>> 459f2bfd09960df9711aca4815bffca8c00ab41f
+	},
+	update: function()
+	{
+		if(this.cache.isSoundDecoded('music')){
+			game.state.start("Main");
+		}
 	}
 }

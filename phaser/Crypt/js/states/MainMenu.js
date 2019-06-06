@@ -14,8 +14,6 @@ MainMenu.prototype = {
 
 	create: function()
 	{
-<<<<<<< HEAD
-=======
 		// Start music
 		if (!gameMusic)
 		{
@@ -25,7 +23,7 @@ MainMenu.prototype = {
 			gameMusic.play();
 		}
 
->>>>>>> 459f2bfd09960df9711aca4815bffca8c00ab41f
+
 		// title and buttons
 		this.menu = this.time.now + 200;
 		game.world.width = game.width;
@@ -109,15 +107,11 @@ MainMenu.prototype = {
 			}
 			else if(selection == 2)
 			{
-<<<<<<< HEAD
-				//FIGURE OUT THIS STATE
-
-=======
 				// Start tutorial
 				LevelLoader.resetRun();
 				LevelLoader.tutorial = true;
 				game.state.start("play");
->>>>>>> 459f2bfd09960df9711aca4815bffca8c00ab41f
+
 			}
 			else if(selection == 3)
 			{
