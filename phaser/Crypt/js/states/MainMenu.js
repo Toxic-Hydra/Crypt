@@ -11,12 +11,6 @@ MainMenu.prototype = {
 
 	create: function()
 	{
-		// music (will continue to play in other states)
-        var music = game.add.audio('music');
-        music.volume = 0.7;
-        music.loop = true;
-        music.play();
-
 		// title and buttons
 		this.menu = this.time.now + 200;
 		game.world.width = game.width;
@@ -105,7 +99,7 @@ MainMenu.prototype = {
 			}
 			else if(selection == 3)
 			{
-				//ADD CREDITS
+				//CREDITS
 				game.state.start("credits");
 			}
 

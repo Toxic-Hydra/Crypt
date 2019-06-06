@@ -33,7 +33,7 @@ var Player = function(game, x, y, key)
 	this.gun.trackSprite(this,0,0,false); //Tracks player, can set offsets here but will need to set angle offset in shooting()
 	this.gun.bulletSpeed = 400;
 	this.gun.fireRate = 500;
-	//this.gun.bulletInheritSpriteSpeed = true;
+	
 	//Weapon: Melee variables
 	/*
 	*What to do, create a state, idle, or attacking, Default: idle
@@ -79,6 +79,9 @@ var Player = function(game, x, y, key)
 	this.shootDirectionleft = game.input.keyboard.addKey(Phaser.Keyboard.Z);// = game.input.keyboard.createCursorKeys();
 	this.shootDirectionright = game.input.keyboard.addKey(Phaser.Keyboard.C);
 	this.shootDirectionup = game.input.keyboard.addKey(Phaser.Keyboard.X);
+	this.gun.onFire.add(function(){
+		_player.gunSound.play();
+	});
 	//Change weapon
 	this.weaponChange = game.input.keyboard.addKey(Phaser.Keyboard.R);
 	//Pain state immune
@@ -283,6 +286,7 @@ Player.prototype.shooting = function(state)
 			this.meleeRect.reset(this.x, this.y);
 			this.canAttack = false;
 			this.meleeTime.resume();
+			this.meleeSound.play();
 		}
 		else if(this.shootDirectionleft.isDown && this.canAttack)
 		{
@@ -292,6 +296,7 @@ Player.prototype.shooting = function(state)
 			this.meleeRect.reset(this.x - this.meleeRect.width*2, this.y);
 			this.canAttack = false;
 			this.meleeTime.resume();
+			this.meleeSound.play();
 		}
 		
 

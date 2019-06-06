@@ -50,7 +50,15 @@ PreLoad.prototype = {	//WE CAN ADD THE LOADING SCREEN HERE
 	},
 	create: function()
 	{
-
+		// music (will continue to play in other states)
+		//Seems I was wrong about allowMultiple = false stoping the original music. Instead it just layers
+		//adding it here did end up being the correct solution.
+		var music = game.add.audio('music');
+		music.volume = 0.7;
+        music.allowMultiple = false;
+        music.volume = 0.7;
+        music.loop = true;
+        music.play();
 
 		game.state.start("Main");//newLife
 
