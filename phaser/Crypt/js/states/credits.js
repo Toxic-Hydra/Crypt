@@ -5,7 +5,7 @@ var Credits = function(game)
 
 Credits.prototype = {
 	create: function()
-	{
+	{	//Just a shitload of text pal.
 		var str = "CREDITS:\n";
 		var credits = "Lead Programmer: Ivan Lopez\nMap Design/Programming: Benjamin Chen\nAudio/Programming: Elliot Segal\nArt: Kevin Chu";
 		var text = game.add.bitmapText(game.world.centerX, game.world.centerY-200,'carrier', str, 24);

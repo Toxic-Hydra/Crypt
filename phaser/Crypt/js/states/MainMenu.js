@@ -122,7 +122,7 @@ MainMenu.prototype = {
 		}
 
 	},
-	navDown: function()
+	navDown: function() //Navigate menu selection down
 	{
 		selection += 1;
 		if(selection > 3)
@@ -130,7 +130,7 @@ MainMenu.prototype = {
 			selection = 1;
 		}
 	},
-	navUp: function()
+	navUp: function() //Navigate Menu selection up.
 	{
 		selection -= 1;
 		if(selection < 1)

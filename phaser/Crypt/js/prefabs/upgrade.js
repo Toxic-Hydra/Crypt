@@ -15,7 +15,7 @@ var Upgrade = function(game, x, y, key, name)
 Upgrade.prototype = Object.create(Phaser.Sprite.prototype);
 Upgrade.prototype.constructor = Upgrade;
 
-
+//Heavy use of inheritance to allow for a shitload of upgrades done quick.
 var ShotUpgrade = function(game, x, y, key, name)
 {
 	Upgrade.call(this, game, x, y, key, name);

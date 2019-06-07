@@ -1,10 +1,10 @@
 'use strict'
-
+//Main Enemy prefab, extendable class that allows us to quickly make new enemies. Limited by art tho.
 var Enemy = function(game, x, y, key)
 {
 	Phaser.Sprite.call(this, game, x, y, key);
 	this.smoothed = false;
-	//Arcade
+	//Arcade Physics
 	game.physics.arcade.enableBody(this);
 	this.anchor.setTo(0.5);
 	this.body.gravity.y = 900;
@@ -14,24 +14,23 @@ var Enemy = function(game, x, y, key)
 	this.setHealth(this.maxHealth);
 	this.chaseRange = 60;
 	this.playerDamage = 10 + (15 * (gameData.room));	
-	this.dropChance = game.rnd.frac(0,1);
+	this.dropChance = game.rnd.frac(0,1);//Enemies have a chance to drop items.
 
 
-	//Enemies should have a upgrade drop chance, 25 percent perhaps
-
+	
+	//State machine design inspired by Wolfenstein 3d. very cool.
 	//Enemy States
 	//Enemy states include: Standing, Attack, Path, Pain, Shoot, Chase, Die, Special.
-	//possible cut: Standing, Path
+	//Not all need to be implemented here, can be implemented in individual enemy prefabs.
 	//can possibly replace path with a waypoint system
 	
 	this.stateMachine = new StateMachine('patrol', {
-		//idle: new IdleState(),
+		
 		patrol: new PatrolState(),
 		chase: new ChaseState(),
 		attack: new AttackState(),
 		pain: new PainState(),
-		//die: new DieState(),
-		//shooting: new ShootState(),
+		
 	}, [game, this ]);
 
 	//ANIMATIONS
@@ -49,12 +48,12 @@ Enemy.prototype.constructor = Enemy;
 
 Enemy.prototype.update = function()
 {
-	this.stateMachine.step();
+	this.stateMachine.step();//Goto statemachine state.
 }
 
-Enemy.prototype.patrol = function(enemy, waypoint) //Pass in Platform group during collisions
+Enemy.prototype.patrol = function(enemy, waypoint) 
 {
-	
+	//Navigation waypoints are used to allow enemies to detect where on the platforms they are, and what to do.
 	if(waypoint.effect == "reverse")
 	{
 		if(enemy.body.touching.left)
@@ -76,7 +75,7 @@ class PatrolState extends State
 {
 	enter(scene, enemy)
 	{
-		//enemy.patrol();
+		//Not perfect, enemies still moonwalk every once in a while. *shrug*
 		enemy.animations.play('right');
 		if(enemy.body.velocity.x > 0){
 			enemy.animations.play('right');
@@ -89,7 +88,7 @@ class PatrolState extends State
 
 	execute(scene, enemy)
 	{
-		
+		//Conditions to switch states	
 		if(game.physics.arcade.distanceBetween(enemy, _player) < enemy.chaseRange && enemy.bottom == _player.bottom)
 		{
 			enemy.stateMachine.transition('chase');
@@ -101,7 +100,7 @@ class PatrolState extends State
 	}
 }
 
-Enemy.prototype.turn = function(enemy)
+Enemy.prototype.turn = function(enemy) // when Called, turns enemy towards player
 {
 	if(_player.x < enemy.x)
 	{
@@ -113,18 +112,19 @@ Enemy.prototype.turn = function(enemy)
 	}
 }
 
-class PainState extends State{  //Lets play with this state a bit more. needs some more work to make it look interesting.
+class PainState extends State{ 
 	enter(game, enemy)
 	{
+		//Flash enemies red, and stun them
 		enemy.tint = Phaser.Color.RED;
 		enemy.body.velocity.x = 0;
 		enemy.turn(enemy);
-		//Experiment with tweening the character red for a longer looking pain state.
+		
 	}
 
 	execute(game, enemy)
 	{
-		//can add timers here for a stun state or other such variables
+		//Timer until the red tint is reset and state transition.
 		game.time.events.add(500, function(){
 			enemy.tint = Phaser.Color.WHITE;
 			enemy.stateMachine.transition('chase');
@@ -136,7 +136,7 @@ class PainState extends State{  //Lets play with this state a bit more. needs so
 
 Enemy.prototype.chase = function(enemy)
 {
-	
+	//Check enemy position and velocity, then invert it towards player
 	if(_player.x < enemy.x && enemy.body.velocity.x >= 0)
 	{
 		this.animations.play('right');
@@ -152,18 +152,17 @@ Enemy.prototype.chase = function(enemy)
 class ChaseState extends State {
 	enter(game, enemy)
 	{
-		//animations
 		
 	}
 
 	execute(game, enemy)
-	{
+	{	//When triggered activates this.chase which chases player until they leave the chase range
 		if(game.physics.arcade.distanceBetween(enemy, _player) > enemy.chaseRange)
 		{
 			enemy.stateMachine.transition('patrol');
 		}
 
-		game.physics.arcade.collide(enemy, _player, function(enemy){
+		game.physics.arcade.collide(enemy, _player, function(enemy){ //If close enough, attack
 			enemy.stateMachine.transition('attack');
 		});
 		
@@ -177,7 +176,7 @@ class ChaseState extends State {
 class AttackState extends State {
 	enter(game, enemy)
 	{
-		enemy.turn(enemy);
+		enemy.turn(enemy); //turn towards player.
 	}
 
 	execute(game, enemy)
@@ -187,8 +186,8 @@ class AttackState extends State {
 		//Attack
 		_player.damage(enemy.playerDamage);
 		gameData.player.health = _player.health;
-		console.log(enemy.playerDamage);
-		if(enemy.enemySpeed > 0)
+		//console.log(enemy.playerDamage);
+		if(enemy.enemySpeed > 0) //Direction to launch player
 		{
 			_player.pain(-1);
 
@@ -215,7 +214,7 @@ Enemy.prototype.kill = function() //we have the ability to override base functio
 	this.particleBit.ctx.fill();
 	game.cache.addBitmapData('particle', this.particleBit);
 
-	//EMITTER
+	//DEATH EMITTER
 	this.emitter = game.add.emitter(this.x, this.y, 20);
 	this.emitter.makeParticles(game.cache.getBitmapData('particle'));
 	this.emitter.gravity = 400;

@@ -27,7 +27,7 @@ Play.prototype = {
 
 		var enterDoor = this.doors.getBottom();
 		_player = new Player(game, enterDoor.x, enterDoor.y - 5, 'character');
-		//zombie = new Zombie(game, game.world.centerX, game.world.centerY, 'tempEnemy');
+		
 
 		//DAT.GUI PLAYER
 		/*var gui = new dat.GUI(); //Curently disabled as a new one is created every level transition and death. only use for testing

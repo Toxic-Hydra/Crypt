@@ -53,13 +53,12 @@ LevelLoader.createMap = function(playState)
     map.addTilesetImage('colored', 'colored_transparent');
     map.addTilesetImage('Dungeon' , 'dungeon');
     map.setCollisionByExclusion([47,48,49,57,58,59,68,69,78,79], true, 'Tile Layer 1');
-    //map.setCollisionBetween(1, 1023);
-    //playState.mapLayer = map.createLayer('background');
-    var back = map.createLayer('background');
+    var back = map.createLayer('background'); //SHould have thought of this more, now it kinda fucks the framework if a map doesnt include a background layer
     game.world.sendToBack(back);
     playState.mapLayer = map.createLayer('Tile Layer 1');
     playState.mapLayer.resizeWorld();
 
+    //Dynamically load in Enemies, navigation waypoints, upgrades, traps, and the doors.
     map.createFromObjects('enemies', 1035, 'small', 0, true, false, _enemies, Enemy);
     map.createFromObjects('enemies', 1034, 'big', 0, true, false, _enemies, Zombie);
     map.createFromObjects('enemies', 1033, 'bat', 0, true, false, _enemies, Pursuer);

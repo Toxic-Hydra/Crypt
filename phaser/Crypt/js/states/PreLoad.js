@@ -8,8 +8,7 @@ PreLoad.prototype = {	//WE CAN ADD THE LOADING SCREEN HERE
 
 	preload: function()
 	{
-		//CURENTLY ONLY LOADING PLACEHOLDER ASSETS
-		//console.log('preload');
+		//Fucking load everything dude
 		game.load.atlas('character', 'assets/img/atlas/character.png', 'assets/img/atlas/character.json');
 		game.load.atlas('small', 'assets/img/atlas/smallenemy.png', 'assets/img/atlas/smallenemy.json');
 		game.load.atlas('big', 'assets/img/atlas/bigenemy.png' , 'assets/img/atlas/bigenemy.json');
@@ -24,7 +23,7 @@ PreLoad.prototype = {	//WE CAN ADD THE LOADING SCREEN HERE
 
 		game.load.image('enterDoor', 'assets/img/enterDoor.png');
 		game.load.image('exitDoor', 'assets/img/exitDoor.png');
-
+		//Bitmap font from phaser examples. No idea who made it.
 		game.load.bitmapFont('carrier', 'assets/fonts/carrier_command.png', 'assets/fonts/carrier_command.xml');
 
 		game.load.audio('jump', 'assets/audio/sfx/jump.wav', 0.5);

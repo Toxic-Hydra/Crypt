@@ -2,7 +2,7 @@ var Pursuer = function(game, x, y, key)
 {
 	Enemy.call(this, game, x, y, key);
 	this.chaseRange = 150;
-
+	//all we need to do is define animations.
 	this.animations.add('left', Phaser.Animation.generateFrameNames('sprite', 1, 3), 3, true);
 	this.animations.add('right', Phaser.Animation.generateFrameNames('sprite', 1, 3), 3, true);
 
@@ -46,7 +46,7 @@ class PursueAttackState extends State {
 	}
 }
 
-class PursueChaseState extends State {
+class PursueChaseState extends State { //This dude chases forever
 	enter(game, enemy)
 	{
 		//animations

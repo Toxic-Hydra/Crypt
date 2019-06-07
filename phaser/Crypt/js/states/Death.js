@@ -8,6 +8,7 @@ Death.prototype = {
 
 	create: function()
 	{
+        //Keep track of score.
         if (gameData.room > gameData.bestRoom)
         {
             gameData.bestRoom = gameData.room;

@@ -5,7 +5,6 @@ var Player = function(game, x, y, key)
 	Phaser.Sprite.call(this, game, x, y, key);
 	//Sprite properties
 	this.anchor.setTo(0.5);
-	//this.scale.setTo(4);
 	this.smoothed = false;
 	
 
@@ -82,6 +81,7 @@ var Player = function(game, x, y, key)
 	this.shootDirectionup = game.input.keyboard.addKey(Phaser.Keyboard.X);
 	this.gun.onFire.add(function(){
 		_player.gunSound.play();
+		 game.camera.shake(0.01, 200);
 	});
 	//Change weapon
 	this.weaponChange = game.input.keyboard.addKey(Phaser.Keyboard.R);
@@ -147,16 +147,12 @@ Player.prototype.loadPlayerData = function()
 
 Player.prototype.update = function()
 {
-	// if (this.y > game.world.height - this.height - 10)
-	// {
-	// 	// fell off the screen
-	// 	LevelLoader.playerDied(false);
-	// }
 
 	this.updateBar();
 	this.movement();
 	this.jump();
 	this.shooting(this.weaponState);
+	//collisions and overlaps.
 	game.physics.arcade.overlap(this.gun.bullets, _enemies, this.damageEnemy, null, this);
 	game.physics.arcade.collide(this.meleeRect, _enemies, this.meleeDamage, null, this);
 	game.physics.arcade.overlap(this.meleeRectVert, _enemies, this.meleeDamage, null, this);
@@ -215,6 +211,7 @@ Player.prototype.shooting = function(state)
 		}
 	}
 
+	//Actual shooting. handgun, shotgun.
 	if(state === "gun"){
 		if(this.currentgun == "gun"){
 			if(this.shootDirectionright.isDown)
@@ -228,11 +225,6 @@ Player.prototype.shooting = function(state)
 				this.gun.fireAngle = Phaser.ANGLE_RIGHT;
 				this.gun.fireOffset(16,-4);
 			}
-			/*else if(this.shootDirectionup.isDown)
-			{
-				this.gun.fireAngle = Phaser.ANGLE_UP;
-				this.gun.fireOffset(16,-4);//Need to set these offsets according to the sprite animations
-			}*/
 			else if(this.shootDirectionleft.isDown)
 			{
 				this.lastDirection = 'left';
@@ -260,16 +252,6 @@ Player.prototype.shooting = function(state)
 				this.gun.fireOffset(16,-4);
 				this.gun.fireOffset(16,-4);
 			}
-			/*else if(this.shootDirectionup.isDown)
-			{
-				this.gun.fireAngle = Phaser.ANGLE_UP;
-				this.gun.fireOffset(16,-4);//Need to set these offsets according to the sprite animations
-				this.gun.fireOffset(16,-4);
-				this.gun.fireOffset(16,-4);
-				this.gun.fireOffset(16,-4);
-				this.gun.fireOffset(16,-4);
-				this.gun.fireOffset(16,-4);
-			}*/
 			else if(this.shootDirectionleft.isDown)
 			{
 				this.lastDirection = 'left';

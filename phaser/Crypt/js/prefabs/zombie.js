@@ -3,7 +3,7 @@
 var Zombie = function(game, x, y, key)
 {
 	Enemy.call(this, game, x, y, key);
-
+	//Fireball weapon
 	this.enemyWeapon = game.add.weapon(6, 'items', 'bullet');
 	this.canShoot = true;
 	this.enemyWeapon.fireRate = 1000;
@@ -20,12 +20,10 @@ var Zombie = function(game, x, y, key)
 	this.animations.add('right', Phaser.Animation.generateFrameNames('right', 1, 6), 6, true);
 
 	this.stateMachine = new StateMachine('patrol', {
-		//idle: new IdleState(),
 		patrol: new ZombiePatrolState(),
 		chase: new ChaseState(),
 		attack: new AttackState(),
 		pain: new PainState(),
-		//die: new DieState(),
 		shoot: new ShootState(),
 	}, [game, this ]);
 
@@ -35,7 +33,7 @@ var Zombie = function(game, x, y, key)
 Zombie.prototype = Object.create(Enemy.prototype);
 Zombie.prototype.constructor = Zombie;
 
-class ZombiePatrolState extends State
+class ZombiePatrolState extends State//Since this enemies patrol state is different, its defined here.
 {
 	enter(scene, enemy)
 	{
@@ -80,7 +78,7 @@ class ShootState extends State
 
 		enemy.body.velocity.x = 0;
 
-		if(enemy.canShoot){
+		if(enemy.canShoot){//can shoot state is needed, killing weapon crashes game. instead disable its ability to shoot.
 			if(enemy.x < _player.x)
 			{
 
@@ -106,7 +104,7 @@ class ShootState extends State
 			}
 		}
 
-		console.log(enemy.enemySpeed);
+		//console.log(enemy.enemySpeed);
 
 	}
 }
@@ -168,7 +166,7 @@ Zombie.prototype.update = function()
 }
 
 Zombie.prototype.zombieDamage = function(_player, bullet)
-{
+{	//needs its own damage function since he throws fire balls
 	_player.damage(this.playerDamage);
 	gameData.player.health = _player.health;
 	bullet.kill();
