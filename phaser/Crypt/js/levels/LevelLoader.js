@@ -43,6 +43,7 @@ LevelLoader.chooseMap = function()
     }
     // This list should be randomized each run, but for testing it's convenient not to
     var maps = [ 'map2', 'expanse', 'map1', 'map3', 'map4', 'map5', 'map6', 'map7', 'map8', 'map9' ];
+    shuffle(maps);
     return maps[gameData.room % maps.length];
 }
 
@@ -127,5 +128,14 @@ LevelLoader.nextRoomFade = function()
     {
         gameData.room += 1;
         game.state.start("play");
+    }
+}
+
+function shuffle(array) {
+    for (var i = array.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
     }
 }

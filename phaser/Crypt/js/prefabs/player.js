@@ -81,7 +81,7 @@ var Player = function(game, x, y, key)
 	this.shootDirectionup = game.input.keyboard.addKey(Phaser.Keyboard.X);
 	this.gun.onFire.add(function(){
 		_player.gunSound.play();
-		 game.camera.shake(0.01, 200);
+		 game.camera.shake(0.004, 200);
 	});
 	//Change weapon
 	this.weaponChange = game.input.keyboard.addKey(Phaser.Keyboard.R);
