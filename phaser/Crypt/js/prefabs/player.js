@@ -510,6 +510,7 @@ Player.prototype.updateBar = function()
 
 Player.prototype.kill = function()
 {
+	this.hurtSound.play();
 	Phaser.Sprite.prototype.kill.call(this);
 	LevelLoader.playerDied(true);
 }

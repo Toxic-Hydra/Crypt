@@ -33,6 +33,7 @@ LevelLoader.resetRun = function()
     gameData.player.health = 100;
     gameData.room = 0;
     gameData.player.upgrades = [ ];
+    shuffle(gameData.maps);
 } 
 
 LevelLoader.chooseMap = function()
@@ -41,10 +42,7 @@ LevelLoader.chooseMap = function()
     {
         return 'Tutorial';
     }
-    // This list should be randomized each run, but for testing it's convenient not to
-    var maps = [ 'map2', 'expanse', 'map1', 'map3', 'map4', 'map5', 'map6', 'map7', 'map8', 'map9' ];
-    shuffle(maps);
-    return maps[gameData.room % maps.length];
+    return gameData.maps[gameData.room % gameData.maps.length];
 }
 
 LevelLoader.createMap = function(playState)

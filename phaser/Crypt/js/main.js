@@ -13,7 +13,8 @@ var gameData = {
         health: 100,
         upgrades: [ ]
     },
-    corpses: [ ]
+    corpses: [ ],
+    maps: [ 'map2', 'expanse', 'map1', 'map3', 'map4', 'map5', 'map6', 'map7', 'map8', 'map9' ]
 };
 
 var game = new Phaser.Game(1024, 768, Phaser.AUTO, '');//800 x 600
