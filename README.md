@@ -7,3 +7,4 @@ Get stronger, and die.
 Every death leaves a corpse with a gift for the next generation. 
 
 on Itch.io: https://arcane-hydra.itch.io/crypt
+developed with Phaser CE: http://phaser.io/
